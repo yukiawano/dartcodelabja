@@ -1,0 +1,3 @@
+cat header.tex introduction/introduction.tex footer.tex > cat.tex
+platex cat.tex
+dvipdfmx cat.dvi

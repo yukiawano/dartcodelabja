@@ -1,0 +1,16 @@
+\section{Step 1: Set up your environment}
+
+Dart offers better productivity through powerful and helpful tools. At the center of the toolchain is the Dart Editor, a lightweight text editor that understands how to analyze, run, and debug Dart apps. The editor works with the Dart SDK and Dartium (a build of Chromium with the Dart VM) to give you an integrated experience.
+
+\subsection{Objectives}
+
+1. Install Dart Editor
+2. Send feedback to the editor team
+3. Run the sample clock Dart app
+4. Learn about Dartium
+
+\subsection{Walkthrough}
+
+\subsubsection{Install the Dart Editor}
+
+To get your environment set up, plug in the provided USB. Open the USB drive and find the editor/ directory inside. Copy over the correct Dart Editor version for your OS/bit combination directory to your machine, and unzip it.
