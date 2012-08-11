@@ -11,6 +11,10 @@ Translated text of dart code lab at Google IO 2012.
 
 各章のtexファイルはbuild.shで結合されコンパイルされます．また，GitリポジトリへPushしていただくとビルドサーバーでコンパイルし，次のURLに最新のコンパイルされたPDFが出力されます．
 
+[http://sandbox.yaunix.com/dartlabja/latest.pdf](http://sandbox.yaunix.com/dartlabja/latest.pdf)
+
+また，ビルドがエラーになった場合などの通知などはしていませんので，ビルドを壊すかどうかなどは気にせず，お気軽にPushしていただければと思います．
+
 現在，Step1のはじめのをサンプルとして翻訳しております．箇条書き，画像の挿入など書き方のサンプルとして利用していただければと思います．
 
 ## その他
@@ -18,7 +22,7 @@ Translated text of dart code lab at Google IO 2012.
 その他，Tipsなどをここに掲載しておきます．
 
 * Stepごとにフォルダが分かれていて分割して作業を行うので，Brunchを切らずにGitリポジトリは直接MasterにPushしていただいて構いません
-* 各texファイルはEUC-JPで記述していただきますようお願いいたします．(一部UTF-8で保存しているファイルがあるかもしれません．その場合は，お手数ですがEUC-JPで保存しなおしていただければと思います．)
+* 各texファイルは *EUC-JPで記述* していただきますようお願いいたします．(一部UTF-8で保存しているファイルがあるかもしれません．その場合は，お手数ですがEUC-JPで保存しなおしていただければと思います．)
 
 ## 翻訳の分担
 
