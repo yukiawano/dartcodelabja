@@ -158,8 +158,265 @@ In the Clock sample, try changing the ball velocity or the gravity. Start with l
 Set more breakpoints and inspect the values by opening up the variables.
 
 [Image]
+\section{Step 2: Import and run the chat app}
+
+This codelab walks you through a custom chat application. You will now load this chat app into the editor and learn how to run both client and server Dart apps.
+
+\subsection{Objectives}
+
+\begin{enumerate}
+\item Load existing code into Dart Editor
+\item Run the finished Dart Chat app
+\begin{enumerate}
+\item Run a command-line app
+\item Run a Dartium app
+\end{enumerate}
+\item View running processes
+\item Read and clear console output
+\item Close a running process
+\end{enumerate}
+
+\subsection{Walkthrough}
+
+\subsubsection{Load Dart Chat into Dart Editor}
+
+If you are using a provided USB drive, copy over the dartchat/ directory from the USB thumb drive to your computer. If you do not have a provided USB drive, you can download the source code.
+
+Load the sample project for this codelab into the editor. Select File > Open Folder... in the editor. Find the dartchat/ directory that you copied from the USB or downloaded, select it, and click Open.
+
+[Image]
+
+You will see a new dartchat project in the editor.
+
+[Image]
+
+\subsubsection{Launch the completed version of the Dart Chat sample}
+
+The sample chat app has both a client and a server component.
+Run the server first. In the Files view on the left hand side of Dart Editor, navigate into the dartchat directory, dartchat > finished > chat-server.dart. Right click chat-server.dart and select Run.
+
+[Image]
+
+Verify the server is running by checking the chat-server.dart console output window at the bottom of your editor. You should see a message: "listening for connections on 1337".
+
+[Image]
+
+Next, run the client. Navigate into the client directory, and run the chat-client.dart file in the same way.
+
+[Image]
+
+Notice how Dartium opens the chat app. Verify the chat client is connected to the server by looking for a "[system]: Connected" message in the chat window.
+
+[Image]
+
+Open up another tab to have a proper chat. Right click the ‚ÄúDart Chat‚Äù tab and
+select ‚ÄúDuplicate‚Äù.
+
+[Image]
+
+Drag the new tab into its own window. Experiment by sending messages between the two tabs.
+For more fun, add more clients.
+
+[Image]
+
+\subsubsection{Debugger view and console output}
+
+Switch back to Dart Editor and select the Tools > Debugger in the top level menu. This lists the two processes that you started, the server and the client.
+
+[Image]
+
+On the bottom of Dart Editor are two views, chat-server.dart and Dartium launch. Each view has the output from the respective process.
+
+[Image]
+
+To clear a console output, click on the gray X icon in upper right of the console output view. To kill the process, click on the red box in the upper right of the console output view. After clicking on the red box, you will notice that the Debugger is updated to show that the process was killed.
+Stop both processes now, first for the Dartium launch, and then for the chat-
+server.dart.
+
+[Image]
+
+\subsection{Advanced}
+
+If you finish early, explore more of the chat sample app code. Specifically, investigate the chat server code. The server logs to a file via an isolate, you can learn more about isolates in the Dart Library Tour.
+\section{Step 3: Navigate the chat app, and learn basic Dart language features}
+
+The Dart language is familiar to a wide range of developers. It is a class-based object oriented language with single inheritance, curly braces, and semicolons. The syntax is instantly recognizable and the concepts are comfortable.
+
+As you tour the chat code, you will learn the basics of the Dart language. You can use Dart Editor‚Äôs code navigation features, such as search, outlines, and jump to definition to come up to speed more quickly with unfamiliar code.
+
+\subsection{Objectives}
+
+\begin{enumerate}
+\item Search for code using Dart Editor
+\item Jump to definition of class or method
+\item Use the Outline view to see file structure
+\item Learn about classes, superclass, generics, functions, methods, variables, libraries, and more
+\item Learn about optional static types
+\item Understand basic layout of sample app
+\item Understand warnings in Dart Editor
+\item Understand errors in Dart Editor
+\end{enumerate}
+
+\subsection{Before You Begin - Code}
+
+Begin your coding journey in the start-here directory of dartchat. If you need to catch up, or if you need to start over, you can copy step03 into start-here for this portion of the codelab.
+
+\subsection{Walkthrough}
+
+In order to demonstrate Dart language and editor features, you will create a class to represent the chat window on the HTML page. This process will teach you more about the Dart Editor and the Dart language.
+
+\subsubsection{Project layout}
+
+Before you begin coding, it's helpful to understand the layout of the project. Open the finished directory, inside of the dartchat project in Dart Editor. Now, open the client directory to get a full layout of the finished app.
+
+[Image]
+
+You will spend your time inside the client directory, mostly working on chat-client.dart. The project includes the code for both the client (chat-client.dart) and the server (chat-server.dart).
+
+\subsubsection{Search for code}
+
+Use the Search feature of the editor, in the upper right of the tool, to find "Very first edit" (a helpful comment that the authors included for you :), so you can start editing.
+
+[Image]
+
+The search results are displayed in a dedicated view at the bottom of the editor.
+
+[Image]
+
+Double-click on the chat-client.dart from start-here to open the file and start writing some Dart!
+
+Tip: Use start-here to make all of your edits. Be sure not to edit step03, as this is intended to give you a fallback if you need to restart your tasks.
+
+\subsubsection{Add a top-level variable}
+
+Ensure client/chat-client.dart is open and scrolled to the top. Add a top-level variable for an object to represent the the chat window. Use chatWindow as the variable name and ChatWindow as the type annotation.
+
+\begin{verbatim}
+// client/chat-client.dart
+...
+UsernameInput usernameInput;
+// Step 3: Very first edit
+// Step 3: Add variable for chat window.
+ChatWindow chatWindow;
+class ChatConnection {
+...
+\end{verbatim}
+
+Tip: You can use top-level functions and variables instead of wrapping everything in a class.
+
+Save the file. Notice that after you add the new variable with a type annotation, the editor gives you a warning (with a yellow underline) indicating that it doesn‚Äôt know what ChatWindow is. That makes sense, as we haven‚Äôt defined it yet.
+
+[Image]
+
+Advanced Topic: Dart is an optionally typed language, which means you can use type annotations when you want them, and leave them off when you don‚Äôt. If the runtime can‚Äôt find the type you are referring to, it will ignore that static type annotation and treat the variable as Dynamic (the stand-in type when no other type annotation is provided). A missing type mentioned in a type annotation does not prevent the program from compiling and running (because, again, Dart is optionally typed). It is only a warning that the editor can‚Äôt find ChatWindow.
+
+\subsubsection{Instantiate an object}
+
+Scroll down to main() to create a new instance of ChatWindow. Much like other languages, use the new keyword to construct a new object.
+
+\begin{verbatim}
+// client/chat-client.dart
+main() {
+// Step 4: Identify elements by ID.
+TextAreaElement chatElem = null;
+InputElement usernameElem = null;
+InputElement messageElem = null;
+// Step 3: Instantiate ChatWindow.
+chatWindow = new ChatWindow(chatElem);
+usernameInput = new UsernameInput(usernameElem);
+...
+\end{verbatim}
+
+Notice how the editor is reporting an error now, with a red underline. Specifically, the error is ``no such type: ``ChatWindow''''.
+
+[Image]
+
+An error will stop a program from compiling and running, so this is a problem that must be fixed before continuing. Dart strives to minimize the number of situations that result in a true error, but Dart does need to know what kind of object you want to construct.
+
+\subsubsection{Define a class}
+
+To silence the error, add the ChatWindow class. Find the ‚ÄúDefine the ChatWindow class‚Äù comment and add the following class:
+
+\begin{verbatim}
+// client/chat-client.dart
+...
+// Step 3: Define the ChatWindow class.
+class ChatWindow extends View<TextAreaElement> {
+}
+...
+\end{verbatim}
+
+The editor will give you an error about a missing constructor. Don't worry, we'll fill this in next. The ChatWindow class extends the View class (already defined for you in the application). The View class uses generics to further specify the type of the HTML element the view encapsulates. The above code says ‚ÄúChatWindow is a specialized View of a TextAreaElement‚Äù.
+
+Advanced Topic: Dart support parameterized types, also known as generics. As with Dart‚Äôs optional types, you don‚Äôt need use generics. However, they are a powerful tool to help add more expressiveness to your code. Dart‚Äôs generics8 are probably simpler than those found in other mainstream languages.
+
+Add a constructor to ChatWindow that delegates to the constructor from View:
+
+\begin{verbatim}
+// client/chat-client.dart
+...
+// Step 3: Define the ChatWindow class.
+class ChatWindow extends View<TextAreaElement> {
+ChatWindow(TextAreaElement elem) : super(elem);
+...
+\end{verbatim}
+
+What follows the : is the initializer list9 for a class, used to initialize final variables and the super constructor. Next, add two public methods and one private method to ChatWindow. These methods will display messages to the <textarea> element.
+
+\begin{verbatim}
+// client/chat-client.dart
+...
+class ChatWindow extends View<TextAreaElement> {
+ChatWindow(TextAreaElement elem) : super(elem);
+displayMessage(String msg, String from) {
+_display("$from: $msg\n");
+}
+displayNotice(String notice) {
+_display("[system]: $notice\n");
+}
+_display(String str) {
+elem.text = "${elem.text}$str";
+}
+}
+...
+\end{verbatim}
+
+n the above code, the \_display() method is library private. Names that are prefixed with an underscore are private to the library they are defined within. The ChatWindow class is defined in a file that is marked as \#library('chat-client'), therefore \_display() is only visible to code also in the 'chat-client' library. The other two methods are public.
+The text property of elem accessing the contents of the <textarea> tag.
+One of Dart‚Äôs handy features is string interpolation, used in all three methods above. You can compose strings like "\$from: \$msg\\n" by directly referencing variables with a \$ prefix. Note that elem, used inside of \_display(), is found in the View superclass. ChatWindow extends View, thus gaining access to View's instance variables.
+
+\subsubsection{View the code outline}
+
+With the ChatWindow class now added, you can use the editor to easily browse the outline of the chat-client.dart file.
+Select the chat-client.dart file and select the menu, Tools, Outline.
+
+[Image]
+
+The Outline view will now appear, with a tree view of the classes, methods, and variables found in chat-client.dart.
+
+[Image]
+
+\subsection{Advanced}
+
+Learn more about the Dart language, such as strings and classes. Right-click a class name and select Open Declaration. Try this with classes defined in chat-client.dart as well as classes from Dart.
+
+[Image]
+
+Right-click a method and select Open Callers. You‚Äôll see a list of all the locations that call this method.
+
+[Image]
 \section*{º’º≠}
 
-§≥§Œ ∏ΩÒ§ŒÀ›Ãı§À§¢§ø§Í°§
+§≥§Œ ∏ΩÒ§ŒÀ›Ãı§À§¢§ø§Í°§À›Ãı§À§¥∂®Œœ§Ú≤º§µ§Í§ﬁ§∑§ø≥ßÕÕ§À¥∂º’§§§ø§∑§ﬁ§π°•
+
+\begin{itemize}
+\item Introduction XY§µ§Û
+\item Step1 XY§µ§Û
+\item Step2 YZ§µ§Û
+\end{itemize}
+
+§ﬁ§ø°§§≥§Œ§Ë§¶§ §π§–§È§∑§§CodeLab§Œ•∆•≠•π•»µ⁄§”∂µ∫‡§Ú§¥ƒÛ∂°≤º§µ§Í°§§ﬁ§ø°§∆¸À‹∏Ï§ÿ§ŒÀ›Ãı§Ú§¥≤˜¬˙≤º§µ§Í§ﬁ§∑§øGoogle Inc.§Œ...
+
+∫«∏Â§À...
 
 \end{document}

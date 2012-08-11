@@ -1,0 +1,22 @@
+\section{Step 2: Import and run the chat app}
+
+This codelab walks you through a custom chat application. You will now load this chat app into the editor and learn how to run both client and server Dart apps.
+
+\subsection{Objectives}
+
+
+1. Load existing code into Dart Editor
+2. Run the finished Dart Chat app
+a. Run a command-line app
+b. Run a Dartium app
+3. View running processes
+4. Read and clear console output
+5. Close a running process
+Walkthrough
+Load Dart Chat into Dart Editor
+If you are using a provided USB drive, copy over the dartchat/ directory from the USB thumb
+drive to your computer. If you do not have a provided USB drive, you can download the source
+code5.
+Load the sample project for this codelab into the editor. Select File > Open Folder... in the
+editor. Find the dartchat/ directory that you copied from the USB or downloaded, select it,
+and click Open.

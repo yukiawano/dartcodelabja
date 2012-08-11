@@ -1,0 +1,80 @@
+\section{Step 2: Import and run the chat app}
+
+This codelab walks you through a custom chat application. You will now load this chat app into the editor and learn how to run both client and server Dart apps.
+
+\subsection{Objectives}
+
+\begin{enumerate}
+\item Load existing code into Dart Editor
+\item Run the finished Dart Chat app
+\begin{enumerate}
+\item Run a command-line app
+\item Run a Dartium app
+\end{enumerate}
+\item View running processes
+\item Read and clear console output
+\item Close a running process
+\end{enumerate}
+
+\subsection{Walkthrough}
+
+\subsubsection{Load Dart Chat into Dart Editor}
+
+If you are using a provided USB drive, copy over the dartchat/ directory from the USB thumb drive to your computer. If you do not have a provided USB drive, you can download the source code.
+
+Load the sample project for this codelab into the editor. Select File > Open Folder... in the editor. Find the dartchat/ directory that you copied from the USB or downloaded, select it, and click Open.
+
+[Image]
+
+You will see a new dartchat project in the editor.
+
+[Image]
+
+\subsubsection{Launch the completed version of the Dart Chat sample}
+
+The sample chat app has both a client and a server component.
+Run the server first. In the Files view on the left hand side of Dart Editor, navigate into the dartchat directory, dartchat > finished > chat-server.dart. Right click chat-server.dart and select Run.
+
+[Image]
+
+Verify the server is running by checking the chat-server.dart console output window at the bottom of your editor. You should see a message: "listening for connections on 1337".
+
+[Image]
+
+Next, run the client. Navigate into the client directory, and run the chat-client.dart file in the same way.
+
+[Image]
+
+Notice how Dartium opens the chat app. Verify the chat client is connected to the server by looking for a "[system]: Connected" message in the chat window.
+
+[Image]
+
+Open up another tab to have a proper chat. Right click the “Dart Chat” tab and
+select “Duplicate”.
+
+[Image]
+
+Drag the new tab into its own window. Experiment by sending messages between the two tabs.
+For more fun, add more clients.
+
+[Image]
+
+\subsubsection{Debugger view and console output}
+
+Switch back to Dart Editor and select the Tools > Debugger in the top level menu. This lists the two processes that you started, the server and the client.
+
+[Image]
+
+On the bottom of Dart Editor are two views, chat-server.dart and Dartium launch. Each view has the output from the respective process.
+
+[Image]
+
+To clear a console output, click on the gray X icon in upper right of the console output view. To kill the process, click on the red box in the upper right of the console output view. After clicking on the red box, you will notice that the Debugger is updated to show that the process was killed.
+Stop both processes now, first for the Dartium launch, and then for the chat-
+server.dart.
+
+[Image]
+
+\subsection{Advanced}
+
+If you finish early, explore more of the chat sample app code. Specifically, investigate the chat server code. The server logs to a file via an isolate, you can learn more about isolates in the Dart Library Tour.
