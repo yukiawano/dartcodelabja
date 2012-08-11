@@ -1,0 +1,47 @@
+\section{Step 6: Keep code clean with Dart Editor’s refactoring tools}
+
+Refactoring is the art of changing the structure of code without changing the behavior of code. It’s important to clean your code as you evolve the system. Mature coding environments can help automate refactorings, reducing the friction to code maintenance.
+
+A common refactoring technique is renaming methods, variables, classes, etc as more clear names become apparent. Keeping names understandable and clear is important for code health. Dart Editor can perform many automated rename refactorings for you.
+
+\subsection{Objectives}
+
+\begin{enumerate}
+\item Automatically rename methods and variables
+\end{enumerate}
+
+\subsection{Code}
+
+If you need to catch up, you can copy step06 onto start-here for this portion of the codelab.
+
+\subsection{Walkthrough}
+
+Open client/chat-client.dart and scroll to the top. You will use Dart Editor to
+automatically rename variable names.
+
+\subsubsection{Rename a variable}
+
+Find the ChatConnection connection object, near the top. Rename this variable to
+something a bit more clear, as connection is vague. A quick glance at connection and we’re not sure if it’s the actual WebSocket connection. Of course your tools can tell you, but you want readable code.
+
+Right click on the word connection, and select Rename...
+
+[Image]
+
+The variable name connection is highlighted, and you are instructed to enter a new name. Change the name to chatConnection. Press enter after you change the name.
+
+[Image]
+
+\subsubsection{Review the changes}
+
+The name connection has been changed to chatConnection throughout the file. Scroll to the bottom of the file. You’ll see the name was changed inside main(). The name was also changed inside the bind() method of MessageInput.
+
+You can search for chatConnection using Dart Editor search.
+
+[Image]
+
+\subsection{Advanced}
+
+Rename other methods and variables. Try renaming variables that are statically typed, and variables that are dynamically typed with var.
+
+Tip: You might want to undo any other changes after you play around, because future steps might be a bit confusing if you change too many names.

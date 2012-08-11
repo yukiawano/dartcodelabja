@@ -1,0 +1,87 @@
+\section{Step 5: Encode and decode data with JSON}
+
+JSON, or JavaScript object notation, is a handy text format for encoding structured data like arrays, numbers, strings, booleans, and maps. JSON is well supported across programming languages and libraries, making it easy to perform data interop across systems.
+
+Here’s what an arbitrary data object looks like when encoded into a JSON string:
+
+\begin{verbatim}
+// A Dart map
+var data = {'scores': [12,54,99]};
+assert(data is Map);
+assert(data['scores'] is List);
+assert(data['scores'][0] == 12);
+// Convert to JSON string
+var json = JSON.stringify(data);
+// A Dart map encoded as a JSON string
+assert(json == '{"scores": [12, 54, 99]}');
+\end{verbatim}
+
+Looks pretty similar to Dart’s map and list literals!
+
+\subsection{Objectives}
+
+\begin{enumerate}
+\item Learn about JSON
+\item Encode objects with into a JSON string
+\item Decode a JSON string into an object
+\end{enumerate}
+
+\subsection{Code}
+
+If you need to catch up, you can copy step05 onto start-here for this portion of the codelab.
+
+\subsection{Walkthrough}
+
+Open client/chat-client.dart and scroll to the top of the file. You will now add the JSON library, encode and decode JSON, and try some new Dart Editor features.
+
+\subsubsection{Import dart:json}
+
+To use the JSON functionality bundled with Dart, import the dart:json into the chat-client library, found in client/chat-client.dart.
+
+\begin{verbatim}
+// client/chat-client.dart
+#library('chat-client');
+#import('dart:html');
+// Step 5: Import the JSON library.
+#import('dart:json');
+ChatConnection chatConnection;
+\end{verbatim}
+
+\subsubsection{Encode a message for sending}
+
+Find send() in ChatConnection and add the code to encode, or “stringify”, both the username and message into a single JSON string.
+
+\begin{verbatim}
+// client/chat-client.dart
+send(String from, String message) {
+// Step 5. Encode from and message into one JSON string.
+var encoded = JSON.stringify({'f': from, 'm': message});
+_sendEncodedMessage(encoded);
+}
+\end{verbatim}
+
+The above code creates a map literal using the { } syntax. Both the from username and the message are placed into a single map, effectively saying “this message was sent by this username”. The map is then encoded into a JSON string with JSON.stringify().
+
+Once the message is encoded into a string, it is passed to \_sendEncodedMessage() to be sent by the WebSocket (which you’ll code up in the next step).
+
+\subsubsection{Decode a received message}
+
+Use JSON.parse() to decode a JSON string into a Dart object. Find \_receivedEncodedMessage() inside ChatConnection and add the code to decode a message and display it in the chat window.
+
+\begin{verbatim}
+// client/chat-client.dart
+_receivedEncodedMessage(String encodedMessage) {
+// Step 5: Decode a JSON string and display it in the chat window.
+Map message = JSON.parse(encodedMessage);
+if (message['f'] != null) {
+chatWindow.displayMessage(message['m'], message['f']);
+}
+}
+\end{verbatim}
+
+There is a bit of error checking code, ensuring the message has a sender’s username (f is short for from).
+
+\subsection{Advanced}
+
+Handle an incorrectly formatted message. Display a helpful message if a client receives a message it can't parse or understand.
+

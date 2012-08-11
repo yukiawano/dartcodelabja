@@ -1,0 +1,66 @@
+\section{Step 8: Compile to JavaScript, run in other browsers}
+
+One of Dart’s core features is that it compiles to modern JavaScript to run across the modern web.
+
+\subsection{Objectives}
+
+\begin{enumerate}
+\item Compile client app to JavaScript
+\item Run Dart app in production browser
+\item Understand how the same code runs in Dartium and production browsers
+\end{enumerate}
+
+\subsection{Walkthrough}
+
+Open and show the finished directory. This ensures you are compiling a working application. You can do this step in start-here if you are all caught up and it works successfully in Dartium (see previous step).
+
+Select the finished/client/chat-client.dart file.
+
+[Image]
+
+Choose Tools from the top menu and then select Generate JavaScript. This uses the dart2js26 compiler to convert the Dart client app into modern JavaScript.
+
+[Image]
+
+Notice the output in the console view at the bottom of Dart Editor, confirming compilation has succeeded.
+
+[Image]
+
+A finished/client/chat-client.dart.js file is generated.
+
+[Image]
+
+Ensure the chat-server.dart application is running. See a previous step for instructions.
+
+Run the finished/client/chat-client.dart client application. This will start Dartium. See a previous step for instructions.
+
+The application is now running Dartium. Grab the URL and copy it to the clipboard.
+
+[Image]
+
+Open up Chrome (not Dartium!) and paste in the URL to load up the app. Chat between Dartium, running Dart code on the VM, and Chrome, running Dart compiled to JavaScript.
+
+[Image]
+
+\begin{itemize}
+\item {\bf Note:} As of 2012-06-26, FireFox wouldn’t connect. We don’t think this is a Dart issue, but a WebSocket issue. Suggestions most welcome! If you have Firefox, please test WebSockets at \url{http://www.websocket.org/echo.html} and let us know.
+\item {\bf Note:} As of 2012-06-26, Safari does not speak the latest version of the WebSockets protocol. Here’s the bug to track: \url{http://code.google.com/p/dart/issues/detail?id=3631}
+\end{itemize}
+
+How does the same URL work in both Dartium and non-Dartium browsers? Open finished/ client/index.html and notice the two scripts:
+
+\begin{verbatim}
+<script type="application/dart" src="chat-client.dart"></script>
+<script src="dart.js"></script>
+\end{verbatim}
+
+The dart.js file detects whether your browser has a Dart VM. If not, it removes the application/dart script and replaces it with a text/javascript script tag that points to chat-client.dart.js.
+
+\subsection{Advanced}
+
+Rebuild Gmail, but in Dart. Or, open up dart.js to learn more.
+
+If you have time, you can add support for a command that lists all the people in the chat room.
+
+Or, send a list of all people in a chat room when a new person joins the room.
+

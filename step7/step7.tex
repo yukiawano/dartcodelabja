@@ -1,0 +1,165 @@
+\section{Step 7: Send and receive data with WebSockets}
+
+WebSockets25 are part of the HTML5 family of technologies. They enable bi-directional full-duplex communication between a modern web browser and a WebSocket server. WebSockets can stream discrete messages, either text or binary data.
+
+WebSockets are more efficient than long polling or constant querying over HTTP. They are ideal for chat applications! :)
+
+\subsection{Objectives}
+
+\begin{enumerate}
+\item Learn about WebSockets
+\item Connect to a WebSocket server
+\item Receive data from a WebSocket
+\item Send data to a WebSocket
+\end{enumerate}
+
+\subsection{Code}
+
+If you need to catch up, you can copy step07 onto start-here for this portion of the codelab.
+
+\subsection{Walkthrough}
+
+Open client/chat-client.dart and find the ChatConnection class. You will now add a WebSocket connection, listen for messages, and send messages.
+
+Tip: Open the API docs for the WebSocket class at http://api.dartlang.org/html/WebSocket.html.
+
+\subsubsection{Connect to the WebSocket server}
+
+Add a new instance field for the WebSocket to the ChatConnection class.
+
+\begin{verbatim}
+// client/chat-client.dart
+class ChatConnection {
+// Step 7. Add webSocket instance field.
+WebSocket webSocket;
+String url;
+ChatConnection(this.url) {
+\end{verbatim}
+
+When the WebSocket instance is instantiated, it attempts to connect to the server at the URL. Find \_init inside of ChatConnection and add the following code.
+
+\begin{verbatim}
+// client/chat-client.dart
+_init() {
+// Step 7. Connect to the WebSocket, listen for events.
+chatWindow.displayNotice("Connecting to Web socket");
+webSocket = new WebSocket(url);
+\end{verbatim}
+
+First, the code displays a message to the chat window indicating that it's attempting a connection to the WebSocket server. Second, it instantiates a new WebSocket object, which attempts to connect to the WebSocket server.
+
+Use the Open Declaration feature of the editor to determine where the url variable comes from.
+
+[Image]
+
+Notice how the url variable is an instance variable of ChatConnection, originally set in the constructor.
+
+\subsubsection{Handle WebSocket events}
+
+WebSocket objects respond to four events: open, close, error, and message. The message event is fired when a new message is received on the WebSocket. The content of the message is found in event.data.
+
+Tip: Open the API docs for the WebSocket events at http://api.dartlang.org/html/
+WebSocketEvents.html.
+
+Handle the four WebSocket events inside of ChatConnection's \_init.
+
+\begin{verbatim}
+// client/chat-client.dart
+_init() {
+// Step 7. Connect to the WebSocket, listen for events.
+chatWindow.displayNotice("Connecting to Web socket");
+webSocket = new WebSocket(url);
+webSocket.on.open.add((e) {
+chatWindow.displayNotice('Connected');
+});
+webSocket.on.close.add((e) {
+chatWindow.displayNotice('web socket closed');
+});
+webSocket.on.error.add((e) {
+chatWindow.displayNotice("Error connecting to ws");
+});
+webSocket.on.message.add((e) {
+print('received message ${e.data}');
+});
+}
+\end{verbatim}
+
+Now that the event listeners for WebSocket events are configured, you are ready to use the \_receivedEncodedMessage() method you created from Step 5.
+
+\begin{verbatim}
+// client/chat-client.dart
+webSocket.on.message.add((e) {
+print('received message ${e.data}');
+_receivedEncodedMessage(e.data);
+});
+\end{verbatim}
+
+\subsubsection{Send messages to the WebSocket server}
+
+Finally, with the webSocket instance connected, you can send messages to the server. Find \_sendEncodedMessage() in the ChatConnection class and send the encoded message to the WebSocket server. Only send the message if the webSocket object exists and is actually connected to the server.
+
+\begin{verbatim}
+// client/chat-client.dart
+_sendEncodedMessage(String encodedMessage) {
+// Step 7. Send the message over the WebSocket.
+if (webSocket != null && webSocket.readyState == WebSocket.OPEN) {
+webSocket.send(encodedMessage);
+} else {
+print('WebSocket not connected, message $encodedMessage not sent');
+}
+}
+\end{verbatim}
+
+\subsubsection{Test the app}
+
+Everything should be wired up, time to test your app!
+
+Run the chat-server.dart, if not already running (see Step 2 for instructions). Next, run the client/chat-client.dart application, which launches Dartium. The chat window will print [system]: Connected if the client connects to the WebSocket server.
+
+[Image]
+
+Check the chat-server.dart output in the Dart Editor to see "new ws conn message", which confirms your client has connected to the WebSocket server.
+
+[Image]
+
+Not connecting to the server? Make sure the chat-server.dart is running. Sometimes, completely shutting down and restarting Dartium helps.
+Send some messages! Copy the URL in Dartium, open a new Dartium tab, and paste the URL in. Enter a different username, and start chatting between the two windows.
+
+[Image]
+
+\subsection{Advanced}
+
+Handle connection failures by retrying the connection attempt. Add increasing back-off retry delays.
+
+Update the \_init() method to take a number of seconds to wait before retrying the connection. Add a boolean to track if an error was encountered (you will use this shortly).
+
+\begin{verbatim}
+// client/chat-client.dart
+_init([int retrySeconds = 2]) {
+// Step 6
+bool encounteredError = false;
+\end{verbatim}
+
+In both the close and error event handlers, add a retry to reconnect after a delay. Set the encounteredError boolean to true so the retry timer is scheduled only once, in the event that both close and error events are fired.
+
+\begin{verbatim}
+// client/chat-client.dart
+webSocket.on.close.add((e) {
+chatWindow.displayNotice('web socket closed, retrying in $retrySeconds
+seconds');
+if (!encounteredError) {
+window.setTimeout(() => _init(retrySeconds*2), 1000*retrySeconds);
+}
+encounteredError = true;
+});
+webSocket.on.error.add((e) {
+chatWindow.displayNotice("Error connecting to ws");
+if (!encounteredError) {
+window.setTimeout(() => _init(retrySeconds*2), 1000*retrySeconds);
+}
+encounteredError = true;
+});
+\end{verbatim}
+
+The setTimeout() method takes two arguments: a function and when it should be called (in milliseconds from now). In this case, the \_init() method runs after retrySeconds. This is a good example of Dart’s lexical closures, because the inline function for setTimeout() easily references both \_init() and retrySeconds.
+
