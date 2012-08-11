@@ -23,19 +23,20 @@ Translated text of dart code lab at Google IO 2012.
 
 * Stepごとにフォルダが分かれていて分割して作業を行うので，Brunchを切らずにGitリポジトリは直接MasterにPushしていただいて構いません
 * 各texファイルは *EUC-JPで記述* していただきますようお願いいたします．(一部UTF-8で保存しているファイルがあるかもしれません．その場合は，お手数ですがEUC-JPで保存しなおしていただければと思います．)
+* build.shによりcat.texへ結合されてコンパイルされるのでincludegraphicsで画像を取り込む際などはstepxのフォルダではなく，その一つ上が実際にコンパイルされる場合のファイルのフォルダの位置となりますので，ご注意ください．
 
 ## 翻訳の分担
 
 現在，下記の内容で分担を行なっております．Githubのユーザー名で表記しています．
 
-Introduction 
-Step1 yukiawano
-Step2 
-Step3 
-Step4 
-Step5 
-Step6 
-Step7 
-Step8 
-Step9 
+* Introduction 
+* Step1 yukiawano
+* Step2 
+* Step3 
+* Step4 
+* Step5 
+* Step6 
+* Step7 
+* Step8 
+* Step9 
 
