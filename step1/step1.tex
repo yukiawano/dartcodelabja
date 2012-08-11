@@ -1,17 +1,21 @@
-\section{Step 1: Set up your environment}
+\section{¥¹¥Æ¥Ã¥×1: ´Ä¶­¤Î¥»¥Ã¥È¥¢¥Ã¥×}
 
-Dart offers better productivity through powerful and helpful tools. At the center of the toolchain is the Dart Editor, a lightweight text editor that understands how to analyze, run, and debug Dart apps. The editor works with the Dart SDK and Dartium (a build of Chromium with the Dart VM) to give you an integrated experience.
+Dart¤Ç¤Ï¥Ñ¥ï¥Õ¥ë¤ÇÀ¸»ºÅª¤Ê¥Ä¡¼¥ë¤¬Äó¶¡¤µ¤ì¤Æ¤¤¤Þ¤¹¡¥¤½¤ÎÃæ¤ÇÃæ¿´Åª¤Ê°ÌÃÖ¤ò¤·¤á¤ë¤â¤Î¤¬Dart Editor¤Ç¤¹¡¥Dart Editor¤Ï·ÚÎÌ¤Ê¥Æ¥­¥¹¥È¥¨¥Ç¥£¥¿¤ÇDart¤Î¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤Î¼Â¹Ô¡¤¥Ç¥Ð¥Ã¥°¡¤²òÀÏ¤¬¹Ô¤¨¤Þ¤¹¡¥¥¨¥Ç¥£¥¿¤ÏDart SDK¤äDartium\footnote{Dart VM¤òÅëºÜ¤·¤¿Chromium}¤È¶¨Ä´¤·¤ÆÆ°ºî¤ò¤·¡¤Åý°ì¤µ¤ì¤¿ÂÎ¸³¤òÄó¶¡¤·¤Þ¤¹¡¥
 
-\subsection{Objectives}
+\subsection{ÌÜÉ¸}
 
-1. Install Dart Editor
-2. Send feedback to the editor team
-3. Run the sample clock Dart app
-4. Learn about Dartium
+\begin{enumerate}
+\item Dart Editor¤ò¥¤¥ó¥¹¥È¡¼¥ë
+\item Editor¥Á¡¼¥à¤Ë¥Õ¥£¡¼¥É¥Ð¥Ã¥¯¤òÁ÷¿®
+\item »þ·×¤ÎDart¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤ò¼Â¹Ô
+\item Dartium¤Ë¤Ä¤¤¤Æ³Ø¤Ö
+\end{enumerate}
 
-\subsection{Walkthrough}
+\subsection{¥¦¥©¡¼¥¯¥¹¥ë¡¼}
 
-\subsubsection{Install the Dart Editor}
+\subsubsection{Dart Editor¤ò¥¤¥ó¥¹¥È¡¼¥ë}
+
+¥¿¥¹¥¯: GoogleIO¤Î»þ¤ÈÇÛÉÛÊý¼°¤¬°Û¤Ê¤ë¤Î¤Ç¡¤µ­½Ò¤òÊÑ¹¹
 
 To get your environment set up, plug in the provided USB. Open the USB drive and find the \url{editor/} directory inside. Copy over the correct Dart Editor version for your OS/bit combination directory to your machine, and unzip it.
 
@@ -27,21 +31,21 @@ Open up the newly unzipped \url{dart/} directory, and double click the executabl
 
 [Image]
 
-When Dart Editor first opens, the Welcome window appears.
+Dart Editor¤ò½é¤á¤Æµ¯Æ°¤¹¤ë¤È¡¤¤è¤¦¤³¤½²èÌÌ¤¬É½¼¨¤µ¤ì¤Þ¤¹¡¥
 
-[Image]
+\includegraphics{step1/welcome.png}
 
-\subsubsection{Use the Send Feedback button}
+\subsubsection{¥Õ¥£¡¼¥É¥Ð¥Ã¥¯¤òÁ÷¤ë¥Ü¥¿¥ó¤ò»È¤¦}
 
-The Dart Editor team really appreciates feedback. The easiest way to let them know your thoughts is to use the Send Feedback button in the upper right of the editorâ€™s toolbar.
+¥Õ¥£¡¼¥É¥Ð¥Ã¥¯¤ò¤¤¤¿¤À¤±¤ë¤ÈDart Editor¥Á¡¼¥à¤Ï¤È¤Æ¤â´¶¼Õ¤·¤Þ¤¹¡¥Dart Editor¥Á¡¼¥à¤Ë¤¢¤Ê¤¿¤Î¹Í¤¨(¥Õ¥£¡¼¥É¥Ð¥Ã¥¯)¤òÃÎ¤é¤»¤ëºÇ¤â´ÊÃ±¤ÊÊýË¡¤Ï¥¨¥Ç¥£¥¿¤Î¥Ä¡¼¥ë¥Ð¡¼¤Î±¦¾å¤Ë¤¢¤ë''Send Feedback''¤È½ñ¤«¤ì¤¿¥Ü¥¿¥ó¤òÍøÍÑ¤¹¤ë¤³¤È¤Ç¤¹¡¥
 
-Locate the Send Feedback button and click on it.
+Send Feedback¥Ü¥¿¥ó¤Ø¥Þ¥¦¥¹¤ò°ÜÆ°¤·¥¯¥ê¥Ã¥¯¤·¤Þ¤¹¡¥
 
-[Image]
+\includegraphics{step1/sendfeedback1.png}
 
-The Dart Editor Feedback dialog allows you to share bugs and requests directly with the editor team, as well as the larger Dart team. Feel free to send us any and all comments, especially during this codelab. Weâ€™ll turn your suggestions into bug reports and feature requests3 as appropriate.
+Dart Editor¤Î¥Õ¥£¡¼¥É¥Ð¥Ã¥¯¥À¥¤¥¢¥í¥°¤òÍøÍÑ¤¹¤ë¤³¤È¤Ç¡¤¥¨¥Ç¥£¥¿¤Î¥Á¡¼¥à¤ËÄ¾ÀÜ¥Ð¥°¤ä¥ê¥¯¥¨¥¹¥È¤òÁ÷¿®¤¹¤ë¤³¤È¤¬¤Ç¤­¤Þ¤¹¡¥Á÷¿®¤·¤Æ¤¤¤¿¤À¤¤¤¿Äó°Æ¤Ï¥Ð¥°¥ì¥Ý¡¼¥È¤äµ¡Ç½¥ê¥¯¥¨¥¹¥È¤È¤·¤ÆÅÐÏ¿¤µ¤»¤Æ¤¤¤¿¤À¤­¤Þ¤¹¡¥\footnote{\url{http://dartbug.com}¤¬»äÃ£¤ÎIssue Tracker¤Ç¤¹¡¥}
 
-[Image]
+\includegraphics{step1/sendfeedback2.png}
 
 \subsubsection{Run the Clock sample}
 
@@ -53,7 +57,7 @@ Click on the Clock sample from the Welcome window, which copies the Clock sample
 
 [Image]
 
-Tip: Canâ€™t find the Welcome view? You can go to Tools, Welcome Page to display it again.
+Tip: Can¡Çt find the Welcome view? You can go to Tools, Welcome Page to display it again.
 
 [Image]
 
