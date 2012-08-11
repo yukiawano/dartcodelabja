@@ -2,7 +2,7 @@
 
 JSON, or JavaScript object notation, is a handy text format for encoding structured data like arrays, numbers, strings, booleans, and maps. JSON is well supported across programming languages and libraries, making it easy to perform data interop across systems.
 
-Here‚Äôs what an arbitrary data object looks like when encoded into a JSON string:
+Here°«s what an arbitrary data object looks like when encoded into a JSON string:
 
 \begin{verbatim}
 // A Dart map
@@ -16,7 +16,7 @@ var json = JSON.stringify(data);
 assert(json == '{"scores": [12, 54, 99]}');
 \end{verbatim}
 
-Looks pretty similar to Dart‚Äôs map and list literals!
+Looks pretty similar to Dart°«s map and list literals!
 
 \subsection{Objectives}
 
@@ -49,7 +49,7 @@ ChatConnection chatConnection;
 
 \subsubsection{Encode a message for sending}
 
-Find send() in ChatConnection and add the code to encode, or ‚Äústringify‚Äù, both the username and message into a single JSON string.
+Find send() in ChatConnection and add the code to encode, or °»stringify°…, both the username and message into a single JSON string.
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -60,9 +60,9 @@ _sendEncodedMessage(encoded);
 }
 \end{verbatim}
 
-The above code creates a map literal using the { } syntax. Both the from username and the message are placed into a single map, effectively saying ‚Äúthis message was sent by this username‚Äù. The map is then encoded into a JSON string with JSON.stringify().
+The above code creates a map literal using the { } syntax. Both the from username and the message are placed into a single map, effectively saying °»this message was sent by this username°…. The map is then encoded into a JSON string with JSON.stringify().
 
-Once the message is encoded into a string, it is passed to \_sendEncodedMessage() to be sent by the WebSocket (which you‚Äôll code up in the next step).
+Once the message is encoded into a string, it is passed to \_sendEncodedMessage() to be sent by the WebSocket (which you°«ll code up in the next step).
 
 \subsubsection{Decode a received message}
 
@@ -79,7 +79,7 @@ chatWindow.displayMessage(message['m'], message['f']);
 }
 \end{verbatim}
 
-There is a bit of error checking code, ensuring the message has a sender‚Äôs username (f is short for from).
+There is a bit of error checking code, ensuring the message has a sender°«s username (f is short for from).
 
 \subsection{Advanced}
 
