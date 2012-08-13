@@ -2,9 +2,9 @@
 
 Web developers are familiar with the DOM (Document Object Model, a set of APIs to access browser features), but most use jQuery to smooth over the browser interfaces and inconsistencies. Similar to how jQuery makes the DOM feel like JavaScript, Dart offers an HTML library to make programming the browser feel like Dart.
 
-The HTML library12 provides access to the elements on the web page°Ω<div>, <p>, and so on. You can find elements on the page, create new elements, change text, and lots more. You can also access new HTML5 features such as IndexedDB, Application Cache, and WebGL with the HTML library.
+The HTML library12 provides access to the elements on the web page‚Äî<div>, <p>, and so on. You can find elements on the page, create new elements, change text, and lots more. You can also access new HTML5 features such as IndexedDB, Application Cache, and WebGL with the HTML library.
 
-Web applications run in a single UI thread on the page13. To minimize visible pauses or delays, responses to events like mouse clicks and button presses happen inside of callbacks. Once you have a handle to an element on the page, such as an input field, you can register a function to be run on certain events (for example the °»on change°… event).
+Web applications run in a single UI thread on the page13. To minimize visible pauses or delays, responses to events like mouse clicks and button presses happen inside of callbacks. Once you have a handle to an element on the page, such as an input field, you can register a function to be run on certain events (for example the ‚Äúon change‚Äù event).
 
 \subsection{Objectives}
 
@@ -30,7 +30,7 @@ With enough type information (from direct type annotations, simple inferencing, 
 
 [Image]
 
-As you are writing the code for this and future steps, try code completion. If Dart Editor doesn°«t give you reasonable options, try adding a type annotation to the object that you are working with.
+As you are writing the code for this and future steps, try code completion. If Dart Editor doesn‚Äôt give you reasonable options, try adding a type annotation to the object that you are working with.
 
 (Tip: If you are trying code completion, and it's not giving you the right suggestions, use the Send Feedback button to let the Dart team know. Please include the code snippet that you are trying.)
 
@@ -54,7 +54,7 @@ HTML element IDs are unique in a document, making it easy to find a specific ele
 
 \subsubsection{Verify the dart:html library is imported}
 
-With the three IDs identified, you can use Dart°«s HTML library to get a handle on those elements. Open client/chat-client.dart and scroll to the top of the file.
+With the three IDs identified, you can use Dart‚Äôs HTML library to get a handle on those elements. Open client/chat-client.dart and scroll to the top of the file.
 
 Notice the dart:html import is already added for you. We left this in to eliminate errors, but normally you would add this import yourself.
 
@@ -71,7 +71,7 @@ Notice the dart:html import is already added for you. We left this in to elimina
 
 Use the query(String selector)14 top-level function from dart:html to find elements in an HTML page. The query() function takes a CSS selector and returns a single matching element. (A corresponding queryAll()15 function returns all matching elements.)
 
-CSS selectors16 are powerful pointers to elements on an HTML page. You can use them to find elements by IDs, class names, attribute values, position in the DOM, and more. For this step, you will use the element°«s ID as the selector. For example, the CSS selector \#the-id will search for an HTML element with an ID of the-id.
+CSS selectors16 are powerful pointers to elements on an HTML page. You can use them to find elements by IDs, class names, attribute values, position in the DOM, and more. For this step, you will use the element‚Äôs ID as the selector. For example, the CSS selector \#the-id will search for an HTML element with an ID of the-id.
 
 Get the three element IDs that you identified from client/index.html ready. Next, scroll down to the bottom of client/chat-client.dart and find the main() method. Use what you know about IDs, CSS selectors, and the query() function to associate each HTML element with its equivalent Dart object from your app.
 
@@ -91,10 +91,10 @@ messageInput = new MessageInput(messageElem);
 
 Advanced Topic: The astute reader might notice that the query() methods return
 an Element17, yet the returned variable is annotated with more specific types
-(TextAreaElement18 and InputElement19). Dart allows an °»downcast°… because it is
-by nature an optionally typed language, and it promotes an °»innocent until proven guilty°… programming experience. As long as the type annotation is in the type hierarchy of the expected return type, Dart°«s tools do not create a warning.
+(TextAreaElement18 and InputElement19). Dart allows an ‚Äúdowncast‚Äù because it is
+by nature an optionally typed language, and it promotes an ‚Äúinnocent until proven guilty‚Äù programming experience. As long as the type annotation is in the type hierarchy of the expected return type, Dart‚Äôs tools do not create a warning.
 
-Notice how the constructors for ChatWindow, UsernameInput, and MessageInput all take a DOM element. Here°«s an example:
+Notice how the constructors for ChatWindow, UsernameInput, and MessageInput all take a DOM element. Here‚Äôs an example:
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -106,7 +106,7 @@ MessageInput(InputElement elem) : super(elem);
 
 \subsubsection{Bind to events using lexical closures}
 
-You will now learn how to bind a function to an HTML element event. Specifically, you will bind event handlers to the °»on change°… events for both the username input field and the message input field.
+You will now learn how to bind a function to an HTML element event. Specifically, you will bind event handlers to the ‚Äúon change‚Äù events for both the username input field and the message input field.
 For a simple one-line callback function, use the one-line style:
 
 \begin{verbatim}
@@ -125,7 +125,7 @@ return handleTheEvent();
 });
 \end{verbatim}
 
-There°«s nothing special about the => being used for callbacks, you can use it anywhere a one-line function is valid. For example, here°«s a simple class with a simple one-line function:
+There‚Äôs nothing special about the => being used for callbacks, you can use it anywhere a one-line function is valid. For example, here‚Äôs a simple class with a simple one-line function:
 
 \begin{verbatim}
 // for illustrative purposes only, not part of the codelab
@@ -136,17 +136,17 @@ String toString() => '$firstName $lastName';
 }
 \end{verbatim}
 
-Dart°«s lexical closures make writing nested functions and callbacks easy. You can access variables in lexical scope from within callback functions, and even the "this" object is defined by its lexical scope.
+Dart‚Äôs lexical closures make writing nested functions and callbacks easy. You can access variables in lexical scope from within callback functions, and even the "this" object is defined by its lexical scope.
 
 Advanced Topic: Lexical scope defines scope through the program structure. You
-can °»follow the curly braces°… to see which objects or variables are in scope, and that scope does not change based on program behavior. The following code snippet displays a few examples of lexical scope:
+can ‚Äúfollow the curly braces‚Äù to see which objects or variables are in scope, and that scope does not change based on program behavior. The following code snippet displays a few examples of lexical scope:
 
 [Image]
 
 Notice how the onNoMoreCarrots callback handler can access numCarrots,
 bunnies, and farmerName.
 
-You will add the code to listen for the username input field°«s change event. When the username field is empty, the message input field should be disabled. When the username input field has a value, the message input field should be enabled.
+You will add the code to listen for the username input field‚Äôs change event. When the username field is empty, the message input field should be disabled. When the username input field has a value, the message input field should be enabled.
 
 \subsubsection{Handle username field changes}
 
@@ -181,7 +181,7 @@ messageInput.disable();
 ...
 \end{verbatim}
 
-Notice that InputElement°«s value field21 is used to get the contents of the input field. The isEmpty()22 is available to strings, and returns true if the string contains zero characters.
+Notice that InputElement‚Äôs value field21 is used to get the contents of the input field. The isEmpty()22 is available to strings, and returns true if the string contains zero characters.
 
 The enable() and disable() methods are called on the instance of MessageInput, a class we created for this chat application. Go check out the implementations for these methods.
 
