@@ -1,47 +1,46 @@
-\section{Step 6: Keep code clean with Dart Editor’s refactoring tools}
+\section{ステップ6：Dartエディタのリファクタリングツールを使用してコードをきれいにします}
 
-Refactoring is the art of changing the structure of code without changing the behavior of code. It’s important to clean your code as you evolve the system. Mature coding environments can help automate refactorings, reducing the friction to code maintenance.
+リファクタリングは、コードの動作を変更せずにコードの構造を変化させる技術です。あなたがシステムを進化させるためには、コードをきれいにすることが重要です。最近の開発環境では、リファクタリングが自動化されていることでコードの保守を簡単にできます。
 
-A common refactoring technique is renaming methods, variables, classes, etc as more clear names become apparent. Keeping names understandable and clear is important for code health. Dart Editor can perform many automated rename refactorings for you.
+一般的なリファクタリングは、メソッド名、変数名、クラス名などを分かりやすくすることです。名前をわかりやすく維持することは、コードの健康のために重要です。Dartエディタでは名前変更のリファクタリングを自動で行うことができます。
 
-\subsection{Objectives}
+\subsection{オブジェクティブ}
 
 \begin{enumerate}
-\item Automatically rename methods and variables
+\item 自動的にメソッド名や変数名を変更する
 \end{enumerate}
 
-\subsection{Code}
+\subsection{コード}
 
-If you need to catch up, you can copy step06 onto start-here for this portion of the codelab.
+コードラボのここから開始したい場合、step06をコピーして下さい。
 
-\subsection{Walkthrough}
+\subsection{チュートリアル}
 
-Open client/chat-client.dart and scroll to the top. You will use Dart Editor to
-automatically rename variable names.
+cliend/chat-client.dart ファイルを開き、一番上にスクロールしてください。自動的に変数名を変更するために、Dartエディタを使用します。
 
-\subsubsection{Rename a variable}
+\subsubsection{変数名の変更}
 
-Find the ChatConnection connection object, near the top. Rename this variable to
-something a bit more clear, as connection is vague. A quick glance at connection and we’re not sure if it’s the actual WebSocket connection. Of course your tools can tell you, but you want readable code.
+ファイルの上の方にある ChatConnection connection オブジェクトを探します。connectionはパッと見で、何の接続を表しているのかが分かりにくいので、この変数名をもっとわかりやすく変更します。
+（もちろん、ツールはWebSocketの接続であることを教えてくれますが、読みやすいコードの方が良いです）
 
-Right click on the word connection, and select Rename...
-
-[Image]
-
-The variable name connection is highlighted, and you are instructed to enter a new name. Change the name to chatConnection. Press enter after you change the name.
+connectionを右クリックして、[Rename]を選択します。
 
 [Image]
 
-\subsubsection{Review the changes}
-
-The name connection has been changed to chatConnection throughout the file. Scroll to the bottom of the file. You’ll see the name was changed inside main(). The name was also changed inside the bind() method of MessageInput.
-
-You can search for chatConnection using Dart Editor search.
+変数名 connection がハイライトされ、新しい名前を入力できるようになります。より分かりやすくなるように chatConnection と入力して、Enterキーを押します。
 
 [Image]
 
-\subsection{Advanced}
+\subsubsection{変更のレビュー}
 
-Rename other methods and variables. Try renaming variables that are statically typed, and variables that are dynamically typed with var.
+ファイル全体の connection という名前が、 chatConnection に変更されました。ファイルの一番下まで確認してみて下さい。main()関数の内側が変更されたことが分かると思います。そして、MessageInputのbind() メソッドの内側の名前も変更されています。
 
-Tip: You might want to undo any other changes after you play around, because future steps might be a bit confusing if you change too many names.
+また、Dartエディタの検索を使用してchatConnectionを検索することができます。
+
+[Image]
+
+\subsection{上級編}
+
+他のメソッドや変数の名前を変更してみましょう。静的な型付けをされている変数や、varを利用した動的な型付けをされている変数でも試してみてください。
+
+ヒント：上級編であまりにも多くの名前を変更した場合、今後のステップで少し混乱するかもしれないので、上級編で行った変更を元に戻すことをお勧めします。
