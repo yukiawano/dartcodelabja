@@ -35,7 +35,7 @@ Translated text of dart code lab at Google IO 2012.
 * Step3 
 * Step4 
 * Step5 
-* Step6 
+* Step6 dddaisuke
 * Step7 
 * Step8 
 * Step9 
