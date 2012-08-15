@@ -1,72 +1,71 @@
-\section{Step 7: Send and receive data with WebSockets}
+\section{Step 7: WebSocketを用いてデータの送受信を行う}
 
-WebSockets25 are part of the HTML5 family of technologies. They enable bi-directional full-duplex communication between a modern web browser and a WebSocket server. WebSockets can stream discrete messages, either text or binary data.
+WebSocketはHTML5技術の中の一つです。WebSocketを用いると、HTML5に対応した最新のブラウザで、ブラウザとサーバ間を双方向に全二重通信を行うことができます。WebSocketは、個別のメッセージを送信することができ、そのメッセージはテキストかバイナリデータのいずれかです。
 
-WebSockets are more efficient than long polling or constant querying over HTTP. They are ideal for chat applications! :)
+WebSocketsはLong polling(Comet)やHTTP越しの定期的な問い合わせよりもより効率的です。チャットアプリケーションには理想的な技術ですね! :)
 
-\subsection{Objectives}
+\subsection{目的}
 
 \begin{enumerate}
-\item Learn about WebSockets
-\item Connect to a WebSocket server
-\item Receive data from a WebSocket
-\item Send data to a WebSocket
+\item WebSocketについて学びます。
+\item WebSocketサーバに接続します。
+\item WebSocketを用いてデータを受信します。
+\item WebSocketを用いてデータを送信します。
 \end{enumerate}
 
-\subsection{Code}
+\subsection{コード}
 
-If you need to catch up, you can copy step07 onto start-here for this portion of the codelab.
+コードラボのここから開始したい場合、step07をコピーしてください。
 
-\subsection{Walkthrough}
+\subsection{ウォークスルー}
 
-Open client/chat-client.dart and find the ChatConnection class. You will now add a WebSocket connection, listen for messages, and send messages.
+client/chat-client.dartファイルを開き、ChatConnectionクラスを探します。WebSocket接続を追加し、メッセージを受信し、メッセージを送信します。
 
-Tip: Open the API docs for the WebSocket class at http://api.dartlang.org/html/WebSocket.html.
+ヒント: WebSocketのAPIドキュメントを開く場合は、http://api.dartlang.org/html/WebSocket.html を開きます。
 
-\subsubsection{Connect to the WebSocket server}
+\subsubsection{WebSocketサーバへ接続する}
 
-Add a new instance field for the WebSocket to the ChatConnection class.
+WebSocketの新しいインスタンスフィールドを、ChatConnectionクラスに追加します。
 
 \begin{verbatim}
 // client/chat-client.dart
 class ChatConnection {
-// Step 7. Add webSocket instance field.
+// Step 7. webSocketインスタンスフィールドを追加.
 WebSocket webSocket;
 String url;
 ChatConnection(this.url) {
 \end{verbatim}
 
-When the WebSocket instance is instantiated, it attempts to connect to the server at the URL. Find \_init inside of ChatConnection and add the following code.
+WebSocketのインスタンスを生成したとき、引数で指定するURLへ接続を試みます。\_initメソッドを探し、その中に次のコードを追加します。
 
 \begin{verbatim}
 // client/chat-client.dart
 _init() {
-// Step 7. Connect to the WebSocket, listen for events.
+// Step 7. WebSocketサーバへ接続し、イベントの受信を開始します。
 chatWindow.displayNotice("Connecting to Web socket");
 webSocket = new WebSocket(url);
 \end{verbatim}
 
-First, the code displays a message to the chat window indicating that it's attempting a connection to the WebSocket server. Second, it instantiates a new WebSocket object, which attempts to connect to the WebSocket server.
+追加する1行目のコードは、チャットウインドウにWebSocketサーバへ接続を試みているメッセージを表示します。2行目はWebSocketインスタンスを生成し、WebSocketサーバへ接続を試みます。
 
-Use the Open Declaration feature of the editor to determine where the url variable comes from.
+エディタのOpen Declaration機能を使い、url変数がどこで定義されているか確認します。
 
 [Image]
 
-Notice how the url variable is an instance variable of ChatConnection, originally set in the constructor.
+urlはChatConnectionのインスタンス変数で、コンストラクタ内で設定されていることに注意してください。
 
-\subsubsection{Handle WebSocket events}
+\subsubsection{WebSocketイベントをハンドルする}
 
-WebSocket objects respond to four events: open, close, error, and message. The message event is fired when a new message is received on the WebSocket. The content of the message is found in event.data.
+WebSocketオブジェクトは、open、close、error、messageの４つのイベントを返します。messageイベントは、WebSocketサーバから新しいメッセージを受信したことを通知します。メッセージの内容は、event.dataで取得することができます。
 
-Tip: Open the API docs for the WebSocket events at http://api.dartlang.org/html/
-WebSocketEvents.html.
+ヒント: WebSocketイベントのAPIドキュメントは http://api.dartlang.org/html/WebSocketEvents.html を参照してください。
 
-Handle the four WebSocket events inside of ChatConnection's \_init.
+ChatConnectionの\_initに、WebSocketイベントのハンドラを追加します。
 
 \begin{verbatim}
 // client/chat-client.dart
 _init() {
-// Step 7. Connect to the WebSocket, listen for events.
+// Step 7. WebSocketサーバへ接続し、イベントを受信する。
 chatWindow.displayNotice("Connecting to Web socket");
 webSocket = new WebSocket(url);
 webSocket.on.open.add((e) {
@@ -84,7 +83,7 @@ print('received message ${e.data}');
 }
 \end{verbatim}
 
-Now that the event listeners for WebSocket events are configured, you are ready to use the \_receivedEncodedMessage() method you created from Step 5.
+これでWebSocketイベントを利用する準備は完了したので、Step5で作成した\_receivedEncodedMessage()を利用しましょう。
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -94,14 +93,14 @@ _receivedEncodedMessage(e.data);
 });
 \end{verbatim}
 
-\subsubsection{Send messages to the WebSocket server}
+\subsubsection{WebSocketサーバへメッセージを送信する}
 
-Finally, with the webSocket instance connected, you can send messages to the server. Find \_sendEncodedMessage() in the ChatConnection class and send the encoded message to the WebSocket server. Only send the message if the webSocket object exists and is actually connected to the server.
+webSocketインスタンスが接続している状態では、WebSocketサーバに対してメッセージを送信することができます。ChatConnectionクラスの\_sendEncodedMessage()を探し、WebSocketサーバにエンコードされたメッセージを送信するコードを追加しましょう。webSocket変数がnullでは無く、接続が完了している場合のみメッセージを送信します。
 
 \begin{verbatim}
 // client/chat-client.dart
 _sendEncodedMessage(String encodedMessage) {
-// Step 7. Send the message over the WebSocket.
+// Step 7. WebSocketサーバへメッセージを送信する。
 if (webSocket != null && webSocket.readyState == WebSocket.OPEN) {
 webSocket.send(encodedMessage);
 } else {
@@ -110,28 +109,29 @@ print('WebSocket not connected, message $encodedMessage not sent');
 }
 \end{verbatim}
 
-\subsubsection{Test the app}
+\subsubsection{アプリを動かしてみよう}
 
-Everything should be wired up, time to test your app!
+サーバとクライアントを接続し、アプリを動かしてみましょう！
 
-Run the chat-server.dart, if not already running (see Step 2 for instructions). Next, run the client/chat-client.dart application, which launches Dartium. The chat window will print [system]: Connected if the client connects to the WebSocket server.
-
-[Image]
-
-Check the chat-server.dart output in the Dart Editor to see "new ws conn message", which confirms your client has connected to the WebSocket server.
+もしchat-server.dartを起動していないのなら、まず起動します。(起動方法はStep2を参照してください) 次に、client/chat-client.dartをDartiumのlaunchesから起動します。WebSocketサーバに接続成功すると、[system]: Connectedとチャットウインドウに表示されるでしょう。
 
 [Image]
 
-Not connecting to the server? Make sure the chat-server.dart is running. Sometimes, completely shutting down and restarting Dartium helps.
-Send some messages! Copy the URL in Dartium, open a new Dartium tab, and paste the URL in. Enter a different username, and start chatting between the two windows.
+Dart Editorのchat-server.dartの出力にnew ws conn messageと表示されていることをチェックし、クライアントがWebSocketサーバに接続したことを確認します。
 
 [Image]
 
-\subsection{Advanced}
+サーバに接続できない場合は、chat-server.dartが起動しているか確認しましょう。また、Dartiumを終了し、再起動することも有効です。
 
-Handle connection failures by retrying the connection attempt. Add increasing back-off retry delays.
+いくつかメッセージを送受信してみましょう! DariumのURLをコピーし、Dartiumで新しいタブを開きます。そしてURLを貼り付けます。違うユーザ名を入力し、二つのウインドウの間でチャットをしてみましょう。
 
-Update the \_init() method to take a number of seconds to wait before retrying the connection. Add a boolean to track if an error was encountered (you will use this shortly).
+[Image]
+
+\subsection{上級編}
+
+接続失敗時に接続をリトライする処理を追加します。その際、リトライを試す間隔は徐々に増やします。
+
+接続を試す前に数秒待つように\_init()を更新します。また、エラーが発生したかどうかを示すbooleanを追加します。
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -140,7 +140,7 @@ _init([int retrySeconds = 2]) {
 bool encounteredError = false;
 \end{verbatim}
 
-In both the close and error event handlers, add a retry to reconnect after a delay. Set the encounteredError boolean to true so the retry timer is scheduled only once, in the event that both close and error events are fired.
+closeとerrorイベントハンドラーでは、遅延のあと再接続を試みます。closeとerrorハンドラの両方でencounteredError変数をtrueにし、リトライタイマーを一度だけスケジュールします。
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -161,5 +161,5 @@ encounteredError = true;
 });
 \end{verbatim}
 
-The setTimeout() method takes two arguments: a function and when it should be called (in milliseconds from now). In this case, the \_init() method runs after retrySeconds. This is a good example of Dart’s lexical closures, because the inline function for setTimeout() easily references both \_init() and retrySeconds.
+setTimeout()メソッドは二つの引数を取ります。functionとそれをいつ呼び出すか(現在からのミリ秒)です。この場合はretrySeconds秒の後、\_init()メソッドを呼び出します。これはDartにおけるクロージャーの良い例です。setTimeout()メソッドに渡すインライン関数から、容易に\_init()メソッドとretrySeconds変数を参照することができます。
 
