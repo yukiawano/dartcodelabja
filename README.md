@@ -29,14 +29,14 @@ Translated text of dart code lab at Google IO 2012.
 
 現在，下記の内容で分担を行なっております．Githubのユーザー名で表記しています．
 
-* Introduction 
+* Introduction yukiawano
 * Step1 yukiawano
-* Step2 
+* Step2 yukiawano
 * Step3 
 * Step4 
 * Step5 
 * Step6 dddaisuke
-* Step7 
-* Step8 
+* Step7 kenjikitamura
+* Step8 kenjikitamura
 * Step9 dddaisuke
 
