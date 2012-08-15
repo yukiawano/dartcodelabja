@@ -75,38 +75,39 @@ Clock sampleアプリケーションがDartiumの中で動いています．お�
 
 \subsubsection{Dartium}
 
-Dartium is Chromium with an embedded Dart virtual machine (VM). Even though Dart compiles to JavaScript, you can speed up the "edit, reload" development cycle by running Dart apps directly in the browser.
+DartiumはDart仮想マシンを組み込んだChromiumです．DartはJavascriptへコンパイルしますが，Dartアプリケーションをブラウザの中で直接実行することで，編集，再ロードの開発のサイクルをスピードアップすることができます．
 
-To verify that Clock is running in Dartium, right-click in the browser and select Inspect Element.
+ClockがDartiumで動作していることを確かめるために，ブラウザで右クリックをして，"Inspect Element"を選択してください．
 
-[Image]
+\includegraphics{step1/dartium_img1.png}
 
-The Elements tab should be selected by default, and clock.dart should be listed as the script that is being run.
+Elementsタブがデフォルトで選択されていると思います．clock.dartは実行中のスクリプトとしてリストにあるはずです．
 
-[Image]
+\includegraphics{step1/dartium_img2.png}
 
-\subsubsection{Debug with the Dart Editor}
+\subsubsection{Dartエディタを利用してのデバッグ}
 
-With Dart running directly in Dartium, the editor has debugging support for Dart applications. Set a breakpoint by double clicking in the left hand gutter in Dart Editor on first call to setDigits() inside the updateTime() method in clock.dart, line 66. With the breakpoint set (you will see a little blue dot in the gutter), click the Run button again.
+DartiumでDartを直接実行する場合，エディタはDartアプリケーションのデバッグをサポートします．clock.dartにあるupdateTime()メソッドの中のsetDigits()への初めての呼び出しの位置(66行目)のエディタの左端をダブルクリックすることでブレークポイントを設定します．ブレークポイントを設定した後(小さな青いドットが見えるかと思いますが)，Runボタンを再びクリックします．
 
-[Image]
+\includegraphics{step1/debug_img1.png}
 
-Notice how the program stop, and the Debugger view opens in the Dart Editor. To continue the program without leaving the debugger, click the Resume button (the green arrow in the Debugger view). The updateTime() method is called every 1000ms, therefore the breakpoint will be hit again within a second.
+プログラムが対しして，DebuggerビューがDartエディタの中で開かれます．デバッガかｒ漁ることなく，プログラムを続けるには，Resumeボタンをクリックします(Debuggerビューにある緑色の矢印です)．updateTime()メソッドは1000msごとに呼び出されます．したがって，1秒以内に再び，ブレークポイントに到達することでしょう．
 
-[Image]
+\includegraphics{step1/debug_img2.png}
 
-The Debugger view on the right hand side allows you to see which processes are running and what values are in scope at the breakpoint. Hover over the now field, the value will be displayed in a tooltip.
+右側のDebuggerビューを利用することで，どのプロセスが実行されているか，また，ブレークポイントのスコープにおいての値を見ることができます．nowフィールドにマウスをホバーさせると，値がツールチップに表示されることでしょう．
 
-[Image]
+\includegraphics{step1/debug_img3.png}
 
-To terminate the debugger, click on the red square in the Debugger view. This will also stop the application.
+デバッガを終了させるためには，Debuggerビューの赤色の正方形をクリックします．これを押すことでアプリケーションも同様に停止します．
 
-[Image]
+\includegraphics{step1/debug_img4.png}
 
-\subsection{Advanced}
+\subsection{上級編}
 
-Load and launch the other samples.
-In the Clock sample, try changing the ball velocity or the gravity. Start with lines 12 and 117 in balls.dart.
-Set more breakpoints and inspect the values by opening up the variables.
+他のサンプルについても読み込んで起動してみましょう．
+Clockサンプルにおいて，ボールの速度や重力を変えてみましょう．
+balls.dartの12行目から117行目から始めましょう．
+もっと多くのブレークポイントを設定して，variablesを開いて値を見てみましょう．
 
-[Image]
+\includegraphics{step1/advanced.png}
