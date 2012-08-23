@@ -1,66 +1,65 @@
-\section{Step 8: Compile to JavaScript, run in other browsers}
+\section{Step 8: JavaScriptにコンパイルし, 他のブラウザでも動作させよう}
 
-One of Dart’s core features is that it compiles to modern JavaScript to run across the modern web.
+Dartの機能の一つとして、JavaScriptへコンパイルしブラウザ上で動作させる機能があります。
 
-\subsection{Objectives}
+\subsection{目的}
 
 \begin{enumerate}
-\item Compile client app to JavaScript
-\item Run Dart app in production browser
-\item Understand how the same code runs in Dartium and production browsers
+\item クライアントアプリをJavaScriptへコンパイルします。
+\item 一般のブラウザでDartアプリケーションを実行します。
+\item Dartiumブラウザと一般のブラウザでDartコードを実行する方法を学びます。
 \end{enumerate}
 
-\subsection{Walkthrough}
+\subsection{ウォークスルー}
 
-Open and show the finished directory. This ensures you are compiling a working application. You can do this step in start-here if you are all caught up and it works successfully in Dartium (see previous step).
+finishedディレクトリを開きます。finishedディレクトリのコードを利用することで、アプリケーションをコンパイルして動作することを確かなものとします。start-hereから始めた場合でも、今までのステップをすべて済ませDartiumで動作しているなら大丈夫です。
 
-Select the finished/client/chat-client.dart file.
-
-[Image]
-
-Choose Tools from the top menu and then select Generate JavaScript. This uses the dart2js26 compiler to convert the Dart client app into modern JavaScript.
+finished/client/chat-client.dart ファイルを選択します。
 
 [Image]
 
-Notice the output in the console view at the bottom of Dart Editor, confirming compilation has succeeded.
+メニューからToolsを選択し、Generate JavaScriptを選択します。これは、dart2jsコンパイラを使うことで、DartクライアントアプリをJavaScriptに変換します。
 
 [Image]
 
-A finished/client/chat-client.dart.js file is generated.
+Dartエディタの下に表示されているconsoleをチェックし、コンパイルが成功しているか確認します。
 
 [Image]
 
-Ensure the chat-server.dart application is running. See a previous step for instructions.
-
-Run the finished/client/chat-client.dart client application. This will start Dartium. See a previous step for instructions.
-
-The application is now running Dartium. Grab the URL and copy it to the clipboard.
+コンパイルに成功すると、finished/client/chat-client.dart.js ファイルが生成されます。
 
 [Image]
 
-Open up Chrome (not Dartium!) and paste in the URL to load up the app. Chat between Dartium, running Dart code on the VM, and Chrome, running Dart compiled to JavaScript.
+chat-server.dart アプリケーションが動作していることを確認する方法は、前のstepを参照してください。
+
+finished/client/chat-client.dart を実行し、クライアントアプリケーションを動作させます。すると、Dartiumが起動します。詳しい方法は前のstepを参照してください。
+
+現在アプリケーションはDartiumで動作しています。URLを選択し、クリップボードにコピーします。
+
+[Image]
+
+Chromeを開き(Dariumではありません！)URLを貼り付けます。Dartiumとの間でチャットをし、JacaScriptに変換されたコードがChromeで動作していることを確認します。
 
 [Image]
 
 \begin{itemize}
-\item {\bf Note:} As of 2012-06-26, FireFox wouldn’t connect. We don’t think this is a Dart issue, but a WebSocket issue. Suggestions most welcome! If you have Firefox, please test WebSockets at \url{http://www.websocket.org/echo.html} and let us know.
-\item {\bf Note:} As of 2012-06-26, Safari does not speak the latest version of the WebSockets protocol. Here’s the bug to track: \url{http://code.google.com/p/dart/issues/detail?id=3631}
+\item {\bf Note:} 2012-06-26現在、Firefoxでは接続できません。これはDartの問題では無く、WebSocketの問題だと考えています。
+\item {\bf Note:} 2012-06-26現在、Safariでは最新のWebSocketが実装されていないため動作しません。この件は次のページを参照してください。 \url{http://code.google.com/p/dart/issues/detail?id=3631}
 \end{itemize}
 
-How does the same URL work in both Dartium and non-Dartium browsers? Open finished/ client/index.html and notice the two scripts:
+URLは一つなのにDartiumとDartium以外のブラウザの両方で動作しています。どういう仕組みかは finished/client/index.html を開き、次の部分を確認してみましょう。
 
 \begin{verbatim}
 <script type="application/dart" src="chat-client.dart"></script>
 <script src="dart.js"></script>
 \end{verbatim}
 
-The dart.js file detects whether your browser has a Dart VM. If not, it removes the application/dart script and replaces it with a text/javascript script tag that points to chat-client.dart.js.
+dart.jsファイルはブラウザにDart VMの機能が含まれているかをチェックします。もし無ければapplication/dartスクリプトを削除し、text/javascriptスクリプトに置き換え、chat-client.dart.jsが動作するようにします。
 
-\subsection{Advanced}
+\subsection{上級編}
 
-Rebuild Gmail, but in Dart. Or, open up dart.js to learn more.
+DartでGMailをリビルドします。もしくは、勉強のためdart.jsを開きます。
+時間があるのであれば、チャットルームに入っているメンバーのリストを取得するコマンドを追加してみてください。
+または、チャットルーム参加時に、チャットルーム参加者のリストを送るように修正してみてください。
 
-If you have time, you can add support for a command that lists all the people in the chat room.
-
-Or, send a list of all people in a chat room when a new person joins the room.
 
