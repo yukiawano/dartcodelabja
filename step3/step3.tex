@@ -1,55 +1,60 @@
-\section{Step 3: Navigate the chat app, and learn basic Dart language features}
+\section{Step 3: チャットアプリを使って、基本的なダート
+言語の特性を学ぶ}
 
-The Dart language is familiar to a wide range of developers. It is a class-based object oriented language with single inheritance, curly braces, and semicolons. The syntax is instantly recognizable and the concepts are comfortable.
+ダート言語は、広範囲にわたる開発者になじみがあります。これは、単一継承、中括弧、セミコロンからなるクラスベースのオブジェクト指向言語です。構文はすぐに認識でき、そしてその概念は簡単にできることです。
 
-As you tour the chat code, you will learn the basics of the Dart language. You can use Dart Editor’s code navigation features, such as search, outlines, and jump to definition to come up to speed more quickly with unfamiliar code.
+あなたがチャットコードを見て回ることで、あなたはダート言語の基礎を学びます。 あなたはダートエディタのコードナビゲーション機能を使うことができ、検索、アウトラインそして不慣れなコードをより迅速に高速化するために定義へのジャンプします。
 
-\subsection{Objectives}
+\subsection{目的}
 
 \begin{enumerate}
-\item Search for code using Dart Editor
-\item Jump to definition of class or method
-\item Use the Outline view to see file structure
-\item Learn about classes, superclass, generics, functions, methods, variables, libraries, and more
-\item Learn about optional static types
-\item Understand basic layout of sample app
-\item Understand warnings in Dart Editor
-\item Understand errors in Dart Editor
+\item ダートエディタを使用してコードを検索します
+\item クラスやメソッドの定義にジャンプします
+\item ファイル構造を表示するためにアウトラインビューを使用を使用します
+\item クラス、スーパークラス、総称型、関数、メソッド、変数、ライブラリ等について学習します
+\item 任意の静的な型について学びます
+\item サンプルアプリの基本的なレイアウトを理解します
+\item ダートエディタ内で警告を理解します
+\item ダートエディタ内のエラーを理解します
 \end{enumerate}
 
-\subsection{Before You Begin - Code}
+\subsection{あなたがコードを始める前に}
 
-Begin your coding journey in the start-here directory of dartchat. If you need to catch up, or if you need to start over, you can copy step03 into start-here for this portion of the codelab.
+dartchatのstart-here ディレクトリからコーディングの旅を開始します。あなたが追いつく必要がある場合や、またはやり直す必要があるなら、このコードラボのこの部分に対して、start-hereにstep03をコピーすることができます。
 
-\subsection{Walkthrough}
+\subsection{ウォークスルー}
 
-In order to demonstrate Dart language and editor features, you will create a class to represent the chat window on the HTML page. This process will teach you more about the Dart Editor and the Dart language.
+ダート言語やエディタ機能をデモするために、HTMLページ上でチャットウィンドウを表すクラスを作成します。 このプロセスでは、ダートエディタやダート言語についての詳細をお教えします。
 
-\subsubsection{Project layout}
+\subsubsection{プロジェクトレイアウト}
 
-Before you begin coding, it's helpful to understand the layout of the project. Open the finished directory, inside of the dartchat project in Dart Editor. Now, open the client directory to get a full layout of the finished app.
-
-[Image]
-
-You will spend your time inside the client directory, mostly working on chat-client.dart. The project includes the code for both the client (chat-client.dart) and the server (chat-server.dart).
-
-\subsubsection{Search for code}
-
-Use the Search feature of the editor, in the upper right of the tool, to find "Very first edit" (a helpful comment that the authors included for you :), so you can start editing.
+コーディングを開始する前に、プロジェクトのレイアウトを理解しておくと役立ちます
+。ダーツエディタでdartchatプロジェクトの内部で、finishedディレクトリを開きます。今、clientディレクトリを完成アプリの完全なレイアウトを得るために開きます。
 
 [Image]
 
-The search results are displayed in a dedicated view at the bottom of the editor.
+あなたは、clientディレクトリでchat-client.dart.に取り組み、多くの時間を費やします。そのプロジェクトは、クライアント（chat-client.dart）とサーバ（chatserver.dart）の両方のコードが含まれています。
+
+\subsubsection{コードの検索}
+
+"Very first edit"（著者があなたのために含んだ、参考コメントです:)
+を見つけるためにツールの右上にある、エディタの検索機能を使用して、
+そして編集を開始できます。
 
 [Image]
 
-Double-click on the chat-client.dart from start-here to open the file and start writing some Dart!
+検索結果はエディタの下部に専用のビューに表示されます。
 
-Tip: Use start-here to make all of your edits. Be sure not to edit step03, as this is intended to give you a fallback if you need to restart your tasks.
+[Image]
 
-\subsubsection{Add a top-level variable}
+ファイルを開いていくつかのダートを書き始めるのに、start-hereからchat-client.dartをダブルクリックしください！
 
-Ensure client/chat-client.dart is open and scrolled to the top. Add a top-level variable for an object to represent the the chat window. Use chatWindow as the variable name and ChatWindow as the type annotation.
+ヒント： あなたの編集の全てにおいてstart-hereを使用します。 Be sure not to edit step03, as this is intended to give you a fallback if you neもしやり直したいときのために、フォールバックすることを目的としたstep03を編集しないようにしてください。
+
+\subsubsection{トップ・レベルの変数を追加します。}
+
+client/chat-client.dartが開いて、先頭へスクロールしたこと確認します。チャットウィンドウを表すオブジェクトにトップレベルの変数を追加します。変数名としてchatWindowそして型アノテーションとしてChatWindowを使います。
+
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -62,17 +67,22 @@ class ChatConnection {
 ...
 \end{verbatim}
 
-Tip: You can use top-level functions and variables instead of wrapping everything in a class.
+ヒント: 一つのクラス内に、全てを含む代わりにトップ・レベル関数や変数を使用することができます。
 
-Save the file. Notice that after you add the new variable with a type annotation, the editor gives you a warning (with a yellow underline) indicating that it doesn’t know what ChatWindow is. That makes sense, as we haven’t defined it yet.
+ファイルを保存します。型アノテーションを使用して新しい変数を追加した後、エディタはあなたにそれがChatWindowが何であるかを知らないことを示す警告（黄色下線で）提供していることに注意してください。我々はまだそれを定義していないので、それは理にかなっています。
 
 [Image]
 
-Advanced Topic: Dart is an optionally typed language, which means you can use type annotations when you want them, and leave them off when you don’t. If the runtime can’t find the type you are referring to, it will ignore that static type annotation and treat the variable as Dynamic (the stand-in type when no other type annotation is provided). A missing type mentioned in a type annotation does not prevent the program from compiling and running (because, again, Dart is optionally typed). It is only a warning that the editor can’t find ChatWindow.
+高度なトピック：ダートは、任意に型付けされた言語であり、その意味はあなたがこのようなことをしたい時に、方アノテーションを使ったり、それを外したりできることを意味します。もしランタイムはあなたが参照している型を見つけることができない場合、その静的な型注釈を無視して、ダイナミックな変数として扱います
+（スタンド-インタイプの他の型アノテーションが提供されていないスタンド-インタイプ？？？）。
 
-\subsubsection{Instantiate an object}
+型アノテーションに記載されている不明な型は、コンパイルすることや実行することからプログラムを防ぐことはできません。（なぜなら、再び、ダートは任意入力されている？？？）
 
-Scroll down to main() to create a new instance of ChatWindow. Much like other languages, use the new keyword to construct a new object.
+これは、エディタがChatWindowを見つけることができないという警告のみです。
+
+\subsubsection{オブジェクトのインスタンスを作成}
+
+ChatWindowの新しいインタンスを作るために、main()までスクロールダウンしてください。多くの他の言語と同様に、新しいオブジェクトを構築するための新しいキーワードを使用します。
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -87,15 +97,15 @@ usernameInput = new UsernameInput(usernameElem);
 ...
 \end{verbatim}
 
-Notice how the editor is reporting an error now, with a red underline. Specifically, the error is ``no such type: ``ChatWindow''''.
+どのようにエディタが赤い下線でエラーを報告しているかに注意してください。具体的には、エラーは"そのようなタイプ"はありません: ChatWindow"です。
 
 [Image]
 
-An error will stop a program from compiling and running, so this is a problem that must be fixed before continuing. Dart strives to minimize the number of situations that result in a true error, but Dart does need to know what kind of object you want to construct.
+エラーは、コンパイルすることや実行することからプログラムを停止しますので、これは継続する前に修正しなければならない問題です。ダートは、実際のエラーの状況では、その結果の数を最小限に抑えようとしますが、ダートでは構築したいオブジェクトの種類を知る必要がありません。
 
-\subsubsection{Define a class}
+\subsubsection{クラスを定義}
 
-To silence the error, add the ChatWindow class. Find the “Define the ChatWindow class” comment and add the following class:
+エラーを消すには、ChatWindowクラスを追加します。”Define the ChatWindow class”コメントを検索し、次のクラスを追加します。
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -106,12 +116,12 @@ class ChatWindow extends View<TextAreaElement> {
 ...
 \end{verbatim}
 
-The editor will give you an error about a missing constructor. Don't worry, we'll fill this in next. The ChatWindow class extends the View class (already defined for you in the application). The View class uses generics to further specify the type of the HTML element the view encapsulates. The above code says “ChatWindow is a specialized View of a TextAreaElement”.
+エディタは不明なコンストラクタについて、あなたにエラーを出します。心配しないで、我々は次でこれを埋めるだろう。ChatWindowクラスは（既にアプリケーションに正しく定義されている）Viewクラスを継承します。Viewクラスはさらにビューがカプセル化されたHTML要素の型を指定する総称型を使用しています。上記のコードは、"ChatWindowがTextAreaElementの特殊なビューである"と言っています。
 
-Advanced Topic: Dart support parameterized types, also known as generics. As with Dart’s optional types, you don’t need use generics. However, they are a powerful tool to help add more expressiveness to your code. Dart’s generics8 are probably simpler than those found in other mainstream languages.
+高度なトピック：ダートは総称型として知られているパラメーター化した型をサポートしています。ダートのOptionalTypesと同様に、総称型の使用を必要としません。しかしながら、それらはあなたのコードに多くの表現力を追加するための強力なツールです。DARTの総称型8は、おそらく他の主流の言語に見られるものよりも簡単です。
 
-Add a constructor to ChatWindow that delegates to the constructor from View:
-
+そのViewからコンストラクタに委譲するChatWindowにコンストラクタを追加します：
+：
 \begin{verbatim}
 // client/chat-client.dart
 ...
@@ -121,7 +131,8 @@ ChatWindow(TextAreaElement elem) : super(elem);
 ...
 \end{verbatim}
 
-What follows the : is the initializer list9 for a class, used to initialize final variables and the super constructor. Next, add two public methods and one private method to ChatWindow. These methods will display messages to the <textarea> element.
+どのような次の：final変数とスーパーコンストラクタを初期化するために使用するクラスの初期list9です。？？？？次に、ChatWindowに2つのパブリックメソッドと1つのプライベートメソッドを追加します。これらのメソッドは、<textarea>要素にメッセージを表示します。
+
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -141,27 +152,25 @@ elem.text = "${elem.text}$str";
 ...
 \end{verbatim}
 
-n the above code, the \_display() method is library private. Names that are prefixed with an underscore are private to the library they are defined within. The ChatWindow class is defined in a file that is marked as \#library('chat-client'), therefore \_display() is only visible to code also in the 'chat-client' library. The other two methods are public.
-The text property of elem accessing the contents of the <textarea> tag.
-One of Dart’s handy features is string interpolation, used in all three methods above. You can compose strings like "\$from: \$msg\\n" by directly referencing variables with a \$ prefix. Note that elem, used inside of \_display(), is found in the View superclass. ChatWindow extends View, thus gaining access to View's instance variables.
+上記のコードでは、_display（）メソッドでは、プライベートライブラリです。下線が付いている名前は、彼らが内で定義されているライブラリにプライベートです。ChatWindowクラスは、＃library（'chat-client"）とマークされているファイルに定義されており、その結果 _display()は、chat-client"ライブラリにもコードにのみ表示されます。他の2つの方法はパブリックです。
+elemのtextプロパティは<textarea>タグの内容にアクセスしています。Dartの便利な機能の一つは、文字列の補間であり、上記のすべての3つの方法で使用されます。あなたは$接頭辞を持つ変数を直接参照することによって、"$from: $msg\n"ような文字列を作成することができます。elemは、_display（）の内部で使用され、Viewのスーパークラスで見つけることができることに注意してください。ChatWindowはViewを拡張したものであり、したがって、Viewのインスタンス変数へのアクセスを取得しています。
 
-\subsubsection{View the code outline}
+\subsubsection{コードのアウトラインを見てください}
 
-With the ChatWindow class now added, you can use the editor to easily browse the outline of the chat-client.dart file.
-Select the chat-client.dart file and select the menu, Tools, Outline.
+ChatWindowクラスに新しく追加されており、あなたはエディタを使うことによって簡単にchat-client.dartファイルのアウトラインをブラウズ可能です
+chat-client.dartファイルを選択して、メニュー、ツール、アウトラインを選択します。
+[Image]
+
+アウトラインビューには現在、クラス、メソッド、およびchat-client.dartで見つかった変数がのツリービューで表示されています。
 
 [Image]
 
-The Outline view will now appear, with a tree view of the classes, methods, and variables found in chat-client.dart.
+\subsection{上級編}
+
+ダート言語の詳細については、strings10とclasses11などをご覧ください。ダートからのクラスと同様に、chat-client.dartで定義されたクラスでこれを試してみてください。
 
 [Image]
 
-\subsection{Advanced}
-
-Learn more about the Dart language, such as strings and classes. Right-click a class name and select Open Declaration. Try this with classes defined in chat-client.dart as well as classes from Dart.
-
-[Image]
-
-Right-click a method and select Open Callers. You’ll see a list of all the locations that call this method.
+クラス名を右クリックし、Open Declarationを選択します。このメソッドを呼び出した全てのロケーションのリストを確認できるでしょう。
 
 [Image]
