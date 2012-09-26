@@ -32,8 +32,8 @@ Translated text of dart code lab at Google IO 2012.
 * Introduction yukiawano
 * Step1 yukiawano
 * Step2 ofuku3f
-* Step3 
-* Step4 
+* Step3 ofuku3f
+* Step4 yukiawano
 * Step5 yukiawano
 * Step6 dddaisuke
 * Step7 kenjikitamura
