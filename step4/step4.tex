@@ -1,44 +1,43 @@
-\section{Step 4: Respond to changes in input fields}
+\section{Step 4: 入力フィールドの変更へ反応する}
 
-Web developers are familiar with the DOM (Document Object Model, a set of APIs to access browser features), but most use jQuery to smooth over the browser interfaces and inconsistencies. Similar to how jQuery makes the DOM feel like JavaScript, Dart offers an HTML library to make programming the browser feel like Dart.
+Webディベロッパーの皆さんはDOM(Document Object Model, ブラウザの機能へアクセスするAPIのセット)の扱いに慣れているかと思います．しかし，多くの人はブラウザのインターフェースを触りやすくしたり，ブラウザ間の相違をなくすためにjQueryを使っているかと思います．jQueryがDOMをJavaScriptから利用しやすくするように，DartもDartから利用しやすくするようにHTML libraryを提供しています．
 
-The HTML library12 provides access to the elements on the web page—<div>, <p>, and so on. You can find elements on the page, create new elements, change text, and lots more. You can also access new HTML5 features such as IndexedDB, Application Cache, and WebGL with the HTML library.
+HTML library\footnote{\url{http://api.dartlang.org/html.html}}は<div>，<p>などのWebページ上の要素(Element)に対するアクセス手段を提供します．ページ上の要素を見つけたり，新しい要素を作成したり，テキストを変更したり，様々なことができます．また，HTMLの新しい機能であるIndexedDBやApplication Cache，そしてWebGLなどへもHTML libraryを利用してアクセスすることができます．
 
-Web applications run in a single UI thread on the page13. To minimize visible pauses or delays, responses to events like mouse clicks and button presses happen inside of callbacks. Once you have a handle to an element on the page, such as an input field, you can register a function to be run on certain events (for example the “on change” event).
+WebアプリケーションはWebページ上では単一のUIスレッド上で動作します．\footnote{WebWorkerなどの例外はあります．しかし，これらの応用的なトピックについてはここでは触れません．}目に見えて動作が固まったり遅れることを最小化するために，マウスクリックやボタンが押されたことなどのイベントに対する応答はコールバック(Callback)として起こります．例えば入力フィールドなどのページ上の要素のハンドル(Handle)を取得すれば，特定のイベントの時に実行される関数を登録することができます．(例えば，''on change''イベントなど)
 
-\subsection{Objectives}
+\subsection{目標}
 
 \begin{enumerate}
-\item Import a library
-\item Find elements on an HTML page with CSS selector
-\item Bind to events from HTML elements
-\item Use lexical closures, inline callbacks, and one-line functions
-\item Enable and disable input fields
-\item Get the contents of an input element
-\item See a Dart getter in action
-\item Use code completion in Dart Editor to discover which methods you can use
+\item ライブラリをImportする
+\item CSSセレクタを利用してHTMLページ上の要素を見つける．
+\item HTML要素(HTML element)のイベントに関連付ける
+\item レキシカルクロージャ(Lexical Closure), インラインコールバック(Inline Callback), そして単一行関数(One-Line Function)を利用する
+\item 入力フィールドを有効化したり無効化する
+\item 入力要素の内容を取得する
+\item Dartのゲッター(Getter)が実際にどのように動作するかを確認する
+\item どのメソッドが利用できるかを知るためにDart Editorのコード補完を利用する
 \end{enumerate}
 
-\subsection{Code}
+\subsection{コード}
 
-If you need to catch up, you can copy step04 onto start-here for this portion of the codelab.
+もし，作業につまづいた場合はstep04のフォルダの内容をstart-hereフォルダにコピーすることで，この部分の作業内容を終わらせた状態にすることができます．
 
-\subsection{Walkthrough}
+\subsection{ウォークスルー}
 
-Before you start on the code, we will introduce you to one of the more productive and helpful features of Dart Editor: code completion.
-With enough type information (from direct type annotations, simple inferencing, or type propagation), Dart Editor can provide a list of available methods or fields on an object. On a Mac, Control-Space triggers code completion.
+コードにとりかかる前に，Dart Editorが持つ生産的できっと役に立つ機能の一つを紹介します．コード補完(Code Completion)です．型情報(直接的なアノテーション型宣言(Type Annotations)，単純な型推論，また，型伝播(Type Propagation))を利用して，Dart Editorは利用可能なメソッドやオブジェクト上のフィールドのリストを表示します．Macをお使いの場合であれば，コントロールとスペースを同時に押すことでコード補完を呼び出すことができます．
 
-[Image]
+\includegraphics{step4/img_40.jpg}
 
-As you are writing the code for this and future steps, try code completion. If Dart Editor doesn’t give you reasonable options, try adding a type annotation to the object that you are working with.
+このステップやこれ以降のステップでコードを書くとき，コード補完を試してみてください．もし，Dart Editorが思ったような候補を表示してくれない場合はアノテーション型宣言を対象のオブジェクトに追加してみてください．
 
-(Tip: If you are trying code completion, and it's not giving you the right suggestions, use the Send Feedback button to let the Dart team know. Please include the code snippet that you are trying.)
+(チップ: コード補完を利用しようとしていて，正しい候補を提供してくれない場合，Send Feedbackボタンを押してDartチームに知らせてください．その際，補完しようとしているコードのスニペットを一緒に送ってください．)
 
-\subsubsection{Identify the elements in HTML}
+\subsubsection{HTML内の要素を特定する}
 
-You will now add the HTML library, find existing elements on the page, register for events, and manipulate DOM elements.
+HTML libraryを追加して，ページ上に存在する要素を見つけ，イベントを登録し，DOM要素を操作しましょう．
 
-Open client/index.html. Identify the IDs for the two <input> elements and the <textarea> element. For example:
+$ client/index.html $を開きます．2つの\verb|<input>|タグと\verb|<textarea>|タグのIDを特定してください．例えば，
 
 \begin{verbatim}
 // client/index.html
@@ -50,13 +49,13 @@ Open client/index.html. Identify the IDs for the two <input> elements and the <t
 value="enter username...">
 \end{verbatim}
 
-HTML element IDs are unique in a document, making it easy to find a specific element.
+特定の要素を簡単に見つけることができるようにするために，HTML要素のIDはドキュメント内において固有です．
 
-\subsubsection{Verify the dart:html library is imported}
+\subsubsection{dart:htmlライブラリがインポートされたことを確認する}
 
-With the three IDs identified, you can use Dart’s HTML library to get a handle on those elements. Open client/chat-client.dart and scroll to the top of the file.
+3つのIDを確認したら，DartのHTML libraryを使ってそれらの要素のハンドルを取得することができます．$ client/chat-client.dart $を開いてファイルの先頭までスクロールしてください．
 
-Notice the dart:html import is already added for you. We left this in to eliminate errors, but normally you would add this import yourself.
+dart:htmlのインポート文は既に追加されていることがわかると思います．今回，エラーを表示させないために私たちは追加しておきましたが，普段は自分で追加する必要があります．
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -67,13 +66,13 @@ Notice the dart:html import is already added for you. We left this in to elimina
 ...
 \end{verbatim}
 
-\subsubsection{Find HTML elements}
+\subsubsection{HTMLの要素を見つける}
 
-Use the query(String selector)14 top-level function from dart:html to find elements in an HTML page. The query() function takes a CSS selector and returns a single matching element. (A corresponding queryAll()15 function returns all matching elements.)
+dart:htmlのトップレベルの関数であるquery(String selector)\footnote{\url{http://api.dartlang.org/docs/continuous/dart\_html.html\#query}}を利用して，HTMLページ内の要素を見つけます．query()関数はCSSセレクタを引数として取り，マッチした単一の要素を返します．(queryAll()\footnote{\url{http://api.dartlang.org/docs/continuous/dart\_html.html\#queryAll}}がすべての要素を返す関数として存在します．)
 
-CSS selectors16 are powerful pointers to elements on an HTML page. You can use them to find elements by IDs, class names, attribute values, position in the DOM, and more. For this step, you will use the element’s ID as the selector. For example, the CSS selector \#the-id will search for an HTML element with an ID of the-id.
+CSSセレクタ\footnote{\url{https://developer.mozilla.org/en/CSS/Getting\_Started/Selectors}}はHTMLページ上の要素をとても的確に示すことができます．IDやクラス名，属性値，DOM内における位置やその他の条件から要素を見つけることができます．このステップでは要素のIDをセレクタとして利用します．例えば，$ \#the-id $と書かれたCSSセレクタはIDが$ the-id $であるHTML要素を探します．
 
-Get the three element IDs that you identified from client/index.html ready. Next, scroll down to the bottom of client/chat-client.dart and find the main() method. Use what you know about IDs, CSS selectors, and the query() function to associate each HTML element with its equivalent Dart object from your app.
+$ client/index.html $から3つの要素を既に見つけていると思います．次のステップは，$ client/chat-client.dart $を下へスクロールしていき，main()メソッドを見つけてください．IDやCSSセレクタ，そして，query()関数について知っていることを利用して，それぞれのHTML要素をDartのオブジェクトに対応付けましょう．
 
 \begin{verbatim}
 / client/chat-client.dart
@@ -89,12 +88,9 @@ messageInput = new MessageInput(messageElem);
 ...
 \end{verbatim}
 
-Advanced Topic: The astute reader might notice that the query() methods return
-an Element17, yet the returned variable is annotated with more specific types
-(TextAreaElement18 and InputElement19). Dart allows an “downcast” because it is
-by nature an optionally typed language, and it promotes an “innocent until proven guilty” programming experience. As long as the type annotation is in the type hierarchy of the expected return type, Dart’s tools do not create a warning.
+$\bf{発展的な内容:}$ 明察な読者の方はquery()メソッドは単一の要素(Element\footnote{\url{http://api.dartlang.org/html/Element.html}})を返すが，返り値はより詳細な型(TextAreaElement\footnote{\url{http://api.dartlang.org/html/TextAreaElement.html}} and InputElement\footnote{\url{http://api.dartlang.org/html/InputElement.html}})によりアノテートされていることに気づくでしょう．Dartでは''ダウンキャスト''\footnote{訳者注|ダウンキャストとは基底クラスから派生クラスへの型変換． - Wikipedia 型変換 \url{http://ja.wikipedia.org/wiki/\%E5\%9E\%8B\%E5\%A4\%89\%E6\%8F\%9B\#.E3.83.80.E3.82.A6.E3.83.B3.E3.82.AD.E3.83.A3.E3.82.B9.E3.83.88}} が許されています．これは追加的な型づけをもつシステムでは自然なことで，また，これは''疑わしきは罰せず(innocent until proven guilty)''のプログラミングスタイルを推奨します．アノテーション型宣言が期待される戻り値の型のヒエラルキーの中のものである限り，Dartのツールは警告を発しません．
 
-Notice how the constructors for ChatWindow, UsernameInput, and MessageInput all take a DOM element. Here’s an example:
+また，ChatWindow，UsernameInputやMessageInputがどのようにしてコンストラクタでDOMの要素を受け取っているのかも分かると思います．以下に例を示しておきます．
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -104,20 +100,19 @@ MessageInput(InputElement elem) : super(elem);
 ...
 \end{verbatim}
 
-\subsubsection{Bind to events using lexical closures}
+\subsubsection{レキシカルクロージャを利用してイベントを紐付ける}
 
-You will now learn how to bind a function to an HTML element event. Specifically, you will bind event handlers to the “on change” events for both the username input field and the message input field.
-For a simple one-line callback function, use the one-line style:
+ここではHTML要素のイベントにどのようにして関数を紐付けるのかを学びます．特にユーザー名入力フィールドとメッセージ入力フィールドの2つの''on change''イベントに対してイベントハンドラを紐付けます．単一行コールバック関数(simple one-line callback function)を使う場合，次の1行の形式で示せます:
 
 \begin{verbatim}
 element.on.event.add((event) => handleTheEvent())
 \end{verbatim}
 
-The event can be a mouse click, a button press, a value change, or any number of interesting actions or state changes.
+eventにはマウスクリック，ボタンの押下，値の変化など様々な動作や状態の変化を指定することができます．
 
-Tip: Pull up the API docs for ElementEvents20 to see all the possible events from an Element.
+チップ: APIドキュメントのElementEvents\footnote{\url{http://api.dartlang.org/html/ElementEvents.html}}を見ると要素に対して利用可能なすべてのイベントを確認できます．
 
-The one-line function syntax ( => ) used above is shorthand sugar for
+上で使われている単一行間数の文法である\verb|=>|は次の文の短縮形です．
 
 \begin{verbatim}
 element.on.event.add((event) {
@@ -125,7 +120,7 @@ return handleTheEvent();
 });
 \end{verbatim}
 
-There’s nothing special about the => being used for callbacks, you can use it anywhere a one-line function is valid. For example, here’s a simple class with a simple one-line function:
+\verb|=>|はコールバックでの利用に限定されたものではありません．単一行関数が利用できるところであれば，どこでも利用することができます．例えば，これは単一行関数を利用した簡単なクラスです:
 
 \begin{verbatim}
 // for illustrative purposes only, not part of the codelab
@@ -136,22 +131,19 @@ String toString() => '$firstName $lastName';
 }
 \end{verbatim}
 
-Dart’s lexical closures make writing nested functions and callbacks easy. You can access variables in lexical scope from within callback functions, and even the "this" object is defined by its lexical scope.
+Dartのレキシカルクロージャはネストした関数やコールバックを書くことを簡単にします．レキシカルスコープ内の変数に対してコールバック関数の中からアクセスすることができます．また，''this''オブジェクトでさえレキシカルスコープごとに定義されます．
 
-Advanced Topic: Lexical scope defines scope through the program structure. You
-can “follow the curly braces” to see which objects or variables are in scope, and that scope does not change based on program behavior. The following code snippet displays a few examples of lexical scope:
+発展的なトピック: レキシカルスコープはプログラム構造に渡るスコープを定義します．''波括弧をたどる''だけでどのオブジェクトや変数がスコープの中にいるのか知ることができます．また，スコープはプログラムの動作に応じて変わることはありません．次のコードはレキシカルスコープのいくつかの例です:
 
-[Image]
+\includegraphics{step4/img_45.jpg}
 
-Notice how the onNoMoreCarrots callback handler can access numCarrots,
-bunnies, and farmerName.
+onNoMoreCarrotsコールバックハンドラーがnumCarrots，bunnies，そしてfarmerNameにアクセスできることが分かると思います．
 
-You will add the code to listen for the username input field’s change event. When the username field is empty, the message input field should be disabled. When the username input field has a value, the message input field should be enabled.
+ユーザー名入力フィールドの値変化イベントで動作するコードを追加します．ユーザー名フィールドが空の時は，メッセージ入力フィールドは無効化されています．ユーザー名入力フィールドに値が入力されている場合は，メッセージフィールドは有効化されます．
 
-\subsubsection{Handle username field changes}
+\subsubsection{ユーザー名の変更をハンドルする}
 
-Open client/chat-client.dart and find the UsernameInput class. Add the event
-handler inside the bind() method of UsernameInput:
+$ client/chat-client.dart $を開き，UsernameInputクラスを見つけます．イベントハンドラをUsernameInputのbind()メソッドの内側に追加します．
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -164,7 +156,7 @@ elem.on.change.add((e) => _onUsernameChange());
 ...
 \end{verbatim}
 
-Next, inside of \_onUsernameChange(), you should enable the message input element if the username input element is not empty.
+次に\_onUsernameChange()の中にユーザー名フィールドが空でない場合はメッセージ入力フィールドを有効化させるコードを追加します．
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -181,21 +173,21 @@ messageInput.disable();
 ...
 \end{verbatim}
 
-Notice that InputElement’s value field21 is used to get the contents of the input field. The isEmpty()22 is available to strings, and returns true if the string contains zero characters.
+入力要素の値フィールド\footnote{\url{http://api.dartlang.org/html/InputElement.html#value}}は入力フィールドの内容を取得するために使われていることがわかります．isEmpty()\footnote{\url{http://api.dartlang.org/dart_core/String.html#isEmpty}}は文字列に対して利用でき，0文字の文字列の場合にtrueを返します．
 
-The enable() and disable() methods are called on the instance of MessageInput, a class we created for this chat application. Go check out the implementations for these methods.
+MessageInputのインスタンに対してenable()とdisable()メソッドが呼び出されています．MessageInputはこのチャットアプリケーションのために私たちが作成したクラスです．それらのメソッドの実装をチェックしてみてください．
 
-\subsubsection{Handle message field changes}
+\subsubsection{メッセージ入力フィールドの変更をハンドルする}
 
-The mechanics of handling the message input field are similar. When the message input field changes, you should do three things:
+メッセージ入力フィールドの取り扱いの仕組みも似ています．メッセージ入力フィールドが変化したら，次の3つのことをすれば良いのです:
 
 \begin{enumerate}
-\item Send the message via the chat connection
-\item Display the message in the chat window
-\item Erase the message input field
+\item chat connectionを経由してメッセージを送ります．
+\item チャットウインドウにメッセージを表示します．
+\item メッセージ入力フィールドを空にします．
 \end{enumerate}
 
-Find the MessageInput class and add the following code:
+MessageInputクラスを見つけて次のコードを追加してください:
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -212,7 +204,7 @@ elem.value = '';
 }
 \end{verbatim}
 
-Notice that connection.send() is passed message, which is a getter method inside of MessageInput:
+connection.send()にmessageが渡されていることに気づくと思います．messageはMessageInputの中で定義されているゲッターメソッドです:
 
 \begin{verbatim}
 class MessageInput extends View<InputElement> {
@@ -222,10 +214,11 @@ String get message() => elem.value;
 }
 \end{verbatim}
 
-Advanced Topic: A getter is a method that looks like a field and does not require () when called. Getters and setters23 are intended for advanced API design, usually to help with refactoring from simple public fields to encapsulated properties.
+発展したトピック: ゲッターはフィールドに似たメソッドで呼び出しの時に()が必要ありません．ゲッターとセッター\footnote{\url{http://www.dartlang.org/docs/language-tour/#classes-getters-and-setters}}は上級のAPI設計においてプロパティをカプセル化し単純なパブリックなフィールドにリファクタリングすることを手助けすることを意図されています．
 
-\subsection{Advanced}
+\subsection{上級編}
 
-Instead of sending the message when the input field changes, send it when a Send button is clicked. Add a button, label it, and respond to click events.
-Add a timestamp to messages displayed in the ChatWindow. Hint: check out the Date24 class from dart:core.
-
+\begin{enumerate}
+\item 入力フィールドが変更されたときではなく，送信ボタンが押された時に送信するようにしましょう．ボタンを追加し，ラベルをつけ，クリックイベントに応答します．
+\item チャットウインドウでメッセージが表示される際にタイムスタンプを表示しましょう．(ヒント: dart:coreのDate\footnote{\url{http://api.dartlang.org/dart_core/Date.html}}を調べてみてください．)
+\end{enumerate}

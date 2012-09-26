@@ -1,8 +1,8 @@
-\section{Step 5: Encode and decode data with JSON}
+\section{Step 5: JSONを利用してデータをエンコード・デコードする}
 
-JSON, or JavaScript object notation, is a handy text format for encoding structured data like arrays, numbers, strings, booleans, and maps. JSON is well supported across programming languages and libraries, making it easy to perform data interop across systems.
+JSON(Javascript Object Notation)は配列や数値，文字列，論理値，そしてマップなどの構造があるデータをエンコードするのに最適なテキストフォーマットです．システム全体で利用するデータを簡単に扱えるようJSONはプログラミング言語やライブラリにわたって，強力にサポートされています．
 
-Here’s what an arbitrary data object looks like when encoded into a JSON string:
+ここで様々なデーターオブジェクトがJSON文字列にどのようにエンコードされるのかを見ておきましょう:
 
 \begin{verbatim}
 // A Dart map
@@ -16,27 +16,27 @@ var json = JSON.stringify(data);
 assert(json == '{"scores": [12, 54, 99]}');
 \end{verbatim}
 
-Looks pretty similar to Dart’s map and list literals!
+Dartのマップやリスト表現にとても似ていることが分かります．
 
-\subsection{Objectives}
+\subsection{目的}
 
 \begin{enumerate}
-\item Learn about JSON
-\item Encode objects with into a JSON string
-\item Decode a JSON string into an object
+\item JSONについて学ぶ
+\item オブジェクトをJSON文字列へエンコードする
+\item JSON文字列をオブジェクトにデコードする
 \end{enumerate}
 
-\subsection{Code}
+\subsection{コード}
 
-If you need to catch up, you can copy step05 onto start-here for this portion of the codelab.
+もし，作業につまづいた場合はstep05のフォルダの内容をstart-hereフォルダにコピーすることで，この部分の作業内容を終わらせた状態にすることができます．
 
-\subsection{Walkthrough}
+\subsection{ウォークスルー}
 
-Open client/chat-client.dart and scroll to the top of the file. You will now add the JSON library, encode and decode JSON, and try some new Dart Editor features.
+$ client/chat-client.dart $を開き，ファイルの先頭へスクロールしてください．JSONライブラリを追加し，JSONをエンコード・デコードしましょう．そして，Dart Editorの新しいいくつかの機能も試してみましょう．
 
-\subsubsection{Import dart:json}
+\subsubsection{dart:jsonをインポートする}
 
-To use the JSON functionality bundled with Dart, import the dart:json into the chat-client library, found in client/chat-client.dart.
+Dartに付属されているJSONの機能を利用する場合，dart:jsonを$ client/chat-client.dart $にあるchat-client libraryへインポートする必要があります．
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -47,9 +47,9 @@ To use the JSON functionality bundled with Dart, import the dart:json into the c
 ChatConnection chatConnection;
 \end{verbatim}
 
-\subsubsection{Encode a message for sending}
+\subsubsection{送信のためにメッセージをエンコードする}
 
-Find send() in ChatConnection and add the code to encode, or “stringify”, both the username and message into a single JSON string.
+ChatConnectionの中でsend()を見つけ，ユーザー名とメッセージの両方を一つのJSON文字列へエンコード(``stringify'')するためのコードを追加しましょう．
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -60,13 +60,13 @@ _sendEncodedMessage(encoded);
 }
 \end{verbatim}
 
-The above code creates a map literal using the { } syntax. Both the from username and the message are placed into a single map, effectively saying “this message was sent by this username”. The map is then encoded into a JSON string with JSON.stringify().
+上野コードでは\{ \}の文法を利用してマップ表現を作成しています．''このメッセージはこのユーザーから送られました''ということを的確に伝えられるよう，ユーザー名とメッセージの両方はひとつのマップにまとめられます．そして，そのマップはJSON.stringify()を利用してJSON文字列にエンコードされます．
 
-Once the message is encoded into a string, it is passed to \_sendEncodedMessage() to be sent by the WebSocket (which you’ll code up in the next step).
+一旦メッセージが文字列へエンコードされたら，それはWebSocketを通じて送信するために\_sendEncodedMessage()へ渡されます．(この部分は次のステップでコードを書きます．)
 
-\subsubsection{Decode a received message}
+\subsubsection{受信したメッセージをデコードする}
 
-Use JSON.parse() to decode a JSON string into a Dart object. Find \_receivedEncodedMessage() inside ChatConnection and add the code to decode a message and display it in the chat window.
+JSON.parse()を利用して，JSON文字列をDartオブジェクトへデコードします．ChatConnectionの中の\_receivedEncodedMessage()を見つけて，メッセージをデコードしてチャットウインドウに表示するコードを追加します．
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -79,9 +79,10 @@ chatWindow.displayMessage(message['m'], message['f']);
 }
 \end{verbatim}
 
-There is a bit of error checking code, ensuring the message has a sender’s username (f is short for from).
+メッセージに送信者のユーザー名がつけられていることを確認するためのエラーチェックのためのコードを含んでいます．(``f''は''から(from)''の短縮形です．)
 
-\subsection{Advanced}
+\subsection{上級編}
 
-Handle an incorrectly formatted message. Display a helpful message if a client receives a message it can't parse or understand.
-
+\begin{enumerate}
+\item 不正なフォーマットのメッセージの取り扱いをしてください．クライアントがパースできないメッセージや理解できないメッセージを受信した場合に，役に立つメッセージを表示してください．
+\end{enumerate}
