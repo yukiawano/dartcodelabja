@@ -54,9 +54,9 @@ ChatConnectionの中でsend()を見つけ，ユーザー名とメッセージの
 \begin{verbatim}
 // client/chat-client.dart
 send(String from, String message) {
-// Step 5. Encode from and message into one JSON string.
-var encoded = JSON.stringify({'f': from, 'm': message});
-_sendEncodedMessage(encoded);
+  // Step 5. Encode from and message into one JSON string.
+  var encoded = JSON.stringify({'f': from, 'm': message});
+  _sendEncodedMessage(encoded);
 }
 \end{verbatim}
 
@@ -71,11 +71,11 @@ JSON.parse()を利用して，JSON文字列をDartオブジェクトへデコー
 \begin{verbatim}
 // client/chat-client.dart
 _receivedEncodedMessage(String encodedMessage) {
-// Step 5: Decode a JSON string and display it in the chat window.
-Map message = JSON.parse(encodedMessage);
-if (message['f'] != null) {
-chatWindow.displayMessage(message['m'], message['f']);
-}
+  // Step 5: Decode a JSON string and display it in the chat window.
+  Map message = JSON.parse(encodedMessage);
+  if (message['f'] != null) {
+    chatWindow.displayMessage(message['m'], message['f']);
+  }
 }
 \end{verbatim}
 
