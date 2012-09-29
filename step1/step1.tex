@@ -1,8 +1,10 @@
-\section{ステップ1: 環境のセットアップ}
+\chapter*{ステップ1: 環境のセットアップ}
+\addtocounter{chapter}{1}
+\addcontentsline{toc}{chapter}{ステップ1: 環境のセットアップ}
 
 Dartではパワフルで生産的なツールが提供されています．その中で中心的な位置をしめるものがDart Editorです．Dart Editorは軽量なテキストエディタでDartのアプリケーションの実行，デバッグ，解析が行えます．エディタはDart SDKやDartium\footnote{Dart VMを搭載したChromium}と協調して動作をし，統一された体験を提供します．
 
-\subsection{目標}
+\section{目標}
 
 \begin{enumerate}
 \item Dart Editorをインストール
@@ -11,9 +13,9 @@ Dartではパワフルで生産的なツールが提供されています．そ�
 \item Dartiumについて学ぶ
 \end{enumerate}
 
-\subsection{ウォークスルー}
+\section{ウォークスルー}
 
-\subsubsection{Dart Editorをインストール}
+\subsection{Dart Editorをインストール}
 
 タスク: GoogleIOの時と配布方式が異なるので，記述を変更
 
@@ -35,7 +37,7 @@ Dart Editorを初めて起動すると，ようこそ画面が表示されます
 
 \includegraphics{step1/welcome.png}
 
-\subsubsection{フィードバックを送るボタンを使う}
+\subsection{フィードバックを送るボタンを使う}
 
 フィードバックをいただけるとDart Editorチームはとても感謝します．Dart Editorチームにあなたの考え(フィードバック)を知らせる最も簡単な方法はエディタのツールバーの右上にある''Send Feedback''と書かれたボタンを利用することです．
 
@@ -47,7 +49,7 @@ Dart Editorのフィードバックダイアログを利用することで，エ
 
 \includegraphics{step1/sendfeedback2.png}
 
-\subsubsection{時計のサンプルを実行する}
+\subsection{時計のサンプルを実行する}
 
 (フィードバックウインドウが開いているときは，閉じてください．)
 
@@ -73,7 +75,7 @@ Clock sampleアプリケーションがDartiumの中で動いています．お�
 
 \includegraphics[width=13cm]{step1/clocksample5.png}
 
-\subsubsection{Dartium}
+\subsection{Dartium}
 
 DartiumはDart仮想マシンを組み込んだChromiumです．DartはJavascriptへコンパイルしますが，Dartアプリケーションをブラウザの中で直接実行することで，編集，再ロードの開発のサイクルをスピードアップすることができます．
 
@@ -85,7 +87,7 @@ Elementsタブがデフォルトで選択されていると思います．clock.
 
 \includegraphics{step1/dartium_img2.png}
 
-\subsubsection{Dartエディタを利用してのデバッグ}
+\subsection{Dartエディタを利用してのデバッグ}
 
 DartiumでDartを直接実行する場合，エディタはDartアプリケーションのデバッグをサポートします．clock.dartにあるupdateTime()メソッドの中のsetDigits()への初めての呼び出しの位置(66行目)のエディタの左端をダブルクリックすることでブレークポイントを設定します．ブレークポイントを設定した後(小さな青いドットが見えるかと思いますが)，Runボタンを再びクリックします．
 
@@ -103,7 +105,7 @@ DartiumでDartを直接実行する場合，エディタはDartアプリケー�
 
 \includegraphics{step1/debug_img4.png}
 
-\subsection{上級編}
+\section{上級編}
 
 他のサンプルについても読み込んで起動してみましょう．
 Clockサンプルにおいて，ボールの速度や重力を変えてみましょう．
@@ -111,3 +113,5 @@ balls.dartの12行目から117行目から始めましょう．
 もっと多くのブレークポイントを設定して，variablesを開いて値を見てみましょう．
 
 \includegraphics{step1/advanced.png}
+
+\clearpage
