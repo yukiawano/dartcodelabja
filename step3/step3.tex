@@ -1,11 +1,10 @@
-\section{Step 3: チャットアプリを使って、基本的なダート
-言語の特性を学ぶ}
+\ochapter{Step 3: チャットアプリを使って、基本的なダート言語の特性を学ぶ}
 
 ダート言語は、広範囲にわたる開発者になじみがあります。これは、単一継承、中括弧、セミコロンからなるクラスベースのオブジェクト指向言語です。構文はすぐに認識でき、そしてその概念は簡単にできることです。
 
 あなたがチャットコードを見て回ることで、あなたはダート言語の基礎を学びます。 あなたはダートエディタのコードナビゲーション機能を使うことができ、検索、アウトラインそして不慣れなコードをより迅速に高速化するために定義へのジャンプします。
 
-\subsection{目的}
+\section{目的}
 
 \begin{enumerate}
 \item ダートエディタを使用してコードを検索します
@@ -18,43 +17,42 @@
 \item ダートエディタ内のエラーを理解します
 \end{enumerate}
 
-\subsection{あなたがコードを始める前に}
+\section{あなたがコードを始める前に}
 
 dartchatのstart-here ディレクトリからコーディングの旅を開始します。あなたが追いつく必要がある場合や、またはやり直す必要があるなら、このコードラボのこの部分に対して、start-hereにstep03をコピーすることができます。
 
-\subsection{ウォークスルー}
+\section{ウォークスルー}
 
 ダート言語やエディタ機能をデモするために、HTMLページ上でチャットウィンドウを表すクラスを作成します。 このプロセスでは、ダートエディタやダート言語についての詳細をお教えします。
 
-\subsubsection{プロジェクトレイアウト}
+\subsection{プロジェクトレイアウト}
 
 コーディングを開始する前に、プロジェクトのレイアウトを理解しておくと役立ちます
 。ダーツエディタでdartchatプロジェクトの内部で、finishedディレクトリを開きます。今、clientディレクトリを完成アプリの完全なレイアウトを得るために開きます。
 
-[Image]
+\imgw{step3/img_30.jpg}
 
 あなたは、clientディレクトリでchat-client.dart.に取り組み、多くの時間を費やします。そのプロジェクトは、クライアント（chat-client.dart）とサーバ（chatserver.dart）の両方のコードが含まれています。
 
-\subsubsection{コードの検索}
+\subsection{コードの検索}
 
 "Very first edit"（著者があなたのために含んだ、参考コメントです:)
 を見つけるためにツールの右上にある、エディタの検索機能を使用して、
 そして編集を開始できます。
 
-[Image]
+\img{step3/img_31.jpg}
 
 検索結果はエディタの下部に専用のビューに表示されます。
 
-[Image]
+\img{step3/img_32.jpg}
 
 ファイルを開いていくつかのダートを書き始めるのに、start-hereからchat-client.dartをダブルクリックしください！
 
 ヒント： あなたの編集の全てにおいてstart-hereを使用します。 Be sure not to edit step03, as this is intended to give you a fallback if you neもしやり直したいときのために、フォールバックすることを目的としたstep03を編集しないようにしてください。
 
-\subsubsection{トップ・レベルの変数を追加します。}
+\subsection{トップ・レベルの変数を追加します。}
 
 client/chat-client.dartが開いて、先頭へスクロールしたこと確認します。チャットウィンドウを表すオブジェクトにトップレベルの変数を追加します。変数名としてchatWindowそして型アノテーションとしてChatWindowを使います。
-
 
 \begin{verbatim}
 // client/chat-client.dart
@@ -71,7 +69,7 @@ class ChatConnection {
 
 ファイルを保存します。型アノテーションを使用して新しい変数を追加した後、エディタはあなたにそれがChatWindowが何であるかを知らないことを示す警告（黄色下線で）提供していることに注意してください。我々はまだそれを定義していないので、それは理にかなっています。
 
-[Image]
+\img{step3/img_33.jpg}
 
 高度なトピック：ダートは、任意に型付けされた言語であり、その意味はあなたがこのようなことをしたい時に、方アノテーションを使ったり、それを外したりできることを意味します。もしランタイムはあなたが参照している型を見つけることができない場合、その静的な型注釈を無視して、ダイナミックな変数として扱います
 （スタンド-インタイプの他の型アノテーションが提供されていないスタンド-インタイプ？？？）。
@@ -80,30 +78,30 @@ class ChatConnection {
 
 これは、エディタがChatWindowを見つけることができないという警告のみです。
 
-\subsubsection{オブジェクトのインスタンスを作成}
+\subsection{オブジェクトのインスタンスを作成}
 
 ChatWindowの新しいインタンスを作るために、main()までスクロールダウンしてください。多くの他の言語と同様に、新しいオブジェクトを構築するための新しいキーワードを使用します。
 
 \begin{verbatim}
 // client/chat-client.dart
 main() {
-// Step 4: Identify elements by ID.
-TextAreaElement chatElem = null;
-InputElement usernameElem = null;
-InputElement messageElem = null;
-// Step 3: Instantiate ChatWindow.
-chatWindow = new ChatWindow(chatElem);
-usernameInput = new UsernameInput(usernameElem);
-...
+  // Step 4: Identify elements by ID.
+  TextAreaElement chatElem = null;
+  InputElement usernameElem = null;
+  InputElement messageElem = null;
+  // Step 3: Instantiate ChatWindow.
+  chatWindow = new ChatWindow(chatElem);
+  usernameInput = new UsernameInput(usernameElem);
+  ...
 \end{verbatim}
 
 どのようにエディタが赤い下線でエラーを報告しているかに注意してください。具体的には、エラーは"そのようなタイプ"はありません: ChatWindow"です。
 
-[Image]
+\img{step3/img_34.jpg}
 
 エラーは、コンパイルすることや実行することからプログラムを停止しますので、これは継続する前に修正しなければならない問題です。ダートは、実際のエラーの状況では、その結果の数を最小限に抑えようとしますが、ダートでは構築したいオブジェクトの種類を知る必要がありません。
 
-\subsubsection{クラスを定義}
+\subsection{クラスを定義}
 
 エラーを消すには、ChatWindowクラスを追加します。”Define the ChatWindow class”コメントを検索し、次のクラスを追加します。
 
@@ -138,16 +136,16 @@ ChatWindow(TextAreaElement elem) : super(elem);
 // client/chat-client.dart
 ...
 class ChatWindow extends View<TextAreaElement> {
-ChatWindow(TextAreaElement elem) : super(elem);
-displayMessage(String msg, String from) {
-_display("$from: $msg\n");
-}
-displayNotice(String notice) {
-_display("[system]: $notice\n");
-}
-_display(String str) {
-elem.text = "${elem.text}$str";
-}
+  ChatWindow(TextAreaElement elem) : super(elem);
+  displayMessage(String msg, String from) {
+    _display("$from: $msg\n");
+  }
+  displayNotice(String notice) {
+    _display("[system]: $notice\n");
+  }
+  _display(String str) {
+    elem.text = "${elem.text}$str";
+  }
 }
 ...
 \end{verbatim}
@@ -155,22 +153,25 @@ elem.text = "${elem.text}$str";
 上記のコードでは、\_display()メソッドでは、プライベートライブラリです。下線が付いている名前は、彼らが内で定義されているライブラリにプライベートです。ChatWindowクラスは、＃library（'chat-client"）とマークされているファイルに定義されており、その結果\_display()は、chat-client"ライブラリにもコードにのみ表示されます。他の2つの方法はパブリックです。
 elemのtextプロパティは<textarea>タグの内容にアクセスしています。Dartの便利な機能の一つは、文字列の補間であり、上記のすべての3つの方法で使用されます。あなたは\$接頭辞を持つ変数を直接参照することによって、"\$from: \$msg\\n"ような文字列を作成することができます。elemは、\_display()の内部で使用され、Viewのスーパークラスで見つけることができることに注意してください。ChatWindowはViewを拡張したものであり、したがって、Viewのインスタンス変数へのアクセスを取得しています。
 
-\subsubsection{コードのアウトラインを見てください}
+\subsection{コードのアウトラインを見てください}
 
 ChatWindowクラスに新しく追加されており、あなたはエディタを使うことによって簡単にchat-client.dartファイルのアウトラインをブラウズ可能です
 chat-client.dartファイルを選択して、メニュー、ツール、アウトラインを選択します。
-[Image]
+
+\img{step3/img_36.jpg}
 
 アウトラインビューには現在、クラス、メソッド、およびchat-client.dartで見つかった変数がのツリービューで表示されています。
 
-[Image]
+\img{step3/img_37.jpg}
 
-\subsection{上級編}
+\section{上級編}
 
 ダート言語の詳細については、strings10とclasses11などをご覧ください。ダートからのクラスと同様に、chat-client.dartで定義されたクラスでこれを試してみてください。
 
-[Image]
+\img{step3/img_38.jpg}
 
 クラス名を右クリックし、Open Declarationを選択します。このメソッドを呼び出した全てのロケーションのリストを確認できるでしょう。
 
-[Image]
+\img{step3/img_39.jpg}
+
+\clearpage
