@@ -25,7 +25,6 @@
 *.maf
 *.mtc
 *.mtc0
-*.bb
 *~
 cat.tex
 cat.pdf
