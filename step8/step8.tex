@@ -1,8 +1,8 @@
-\section{Step 8: JavaScriptにコンパイルし, 他のブラウザでも動作させよう}
+\ochapter{Step 8: JavaScriptにコンパイルし, 他のブラウザでも動作させよう}
 
 Dartの機能の一つとして、JavaScriptへコンパイルしブラウザ上で動作させる機能があります。
 
-\subsection{目的}
+\section{目的}
 
 \begin{enumerate}
 \item クライアントアプリをJavaScriptへコンパイルします。
@@ -10,25 +10,25 @@ Dartの機能の一つとして、JavaScriptへコンパイルしブラウザ上
 \item Dartiumブラウザと一般のブラウザでDartコードを実行する方法を学びます。
 \end{enumerate}
 
-\subsection{ウォークスルー}
+\section{ウォークスルー}
 
 finishedディレクトリを開きます。finishedディレクトリのコードを利用することで、アプリケーションをコンパイルして動作することを確かなものとします。start-hereから始めた場合でも、今までのステップをすべて済ませDartiumで動作しているなら大丈夫です。
 
 finished/client/chat-client.dart ファイルを選択します。
 
-[Image]
+\imgw{step8/img_65.jpg}
 
 メニューからToolsを選択し、Generate JavaScriptを選択します。これは、dart2jsコンパイラを使うことで、DartクライアントアプリをJavaScriptに変換します。
 
-[Image]
+\imgw{step8/img_67.jpg}
 
 Dartエディタの下に表示されているconsoleをチェックし、コンパイルが成功しているか確認します。
 
-[Image]
+\imgw{step8/img_68.jpg}
 
 コンパイルに成功すると、finished/client/chat-client.dart.js ファイルが生成されます。
 
-[Image]
+\img{step8/img_69.jpg}
 
 chat-server.dart アプリケーションが動作していることを確認する方法は、前のstepを参照してください。
 
@@ -36,11 +36,11 @@ finished/client/chat-client.dart を実行し、クライアントアプリケ�
 
 現在アプリケーションはDartiumで動作しています。URLを選択し、クリップボードにコピーします。
 
-[Image]
+\imgw{step8/img_70.jpg}
 
 Chromeを開き(Dariumではありません！)URLを貼り付けます。Dartiumとの間でチャットをし、JacaScriptに変換されたコードがChromeで動作していることを確認します。
 
-[Image]
+\imgw{step8/img_71.jpg}
 
 \begin{itemize}
 \item {\bf Note:} 2012-06-26現在、Firefoxでは接続できません。これはDartの問題では無く、WebSocketの問題だと考えています。
@@ -62,4 +62,4 @@ DartでGMailをリビルドします。もしくは、勉強のためdart.jsを�
 時間があるのであれば、チャットルームに入っているメンバーのリストを取得するコマンドを追加してみてください。
 または、チャットルーム参加時に、チャットルーム参加者のリストを送るように修正してみてください。
 
-
+\clearpage
