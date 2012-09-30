@@ -1,10 +1,10 @@
-\section{Step 7: WebSocketを用いてデータの送受信を行う}
+\ochapter{Step 7: WebSocketを用いてデータの送受信を行う}
 
 WebSocketはHTML5技術の中の一つです。WebSocketを用いると、HTML5に対応した最新のブラウザで、ブラウザとサーバ間を双方向に全二重通信を行うことができます。WebSocketは、個別のメッセージを送信することができ、そのメッセージはテキストかバイナリデータのいずれかです。
 
 WebSocketsはLong polling(Comet)やHTTP越しの定期的な問い合わせよりもより効率的です。チャットアプリケーションには理想的な技術ですね! :)
 
-\subsection{目的}
+\section{目的}
 
 \begin{enumerate}
 \item WebSocketについて学びます。
@@ -13,17 +13,17 @@ WebSocketsはLong polling(Comet)やHTTP越しの定期的な問い合わせよ�
 \item WebSocketを用いてデータを送信します。
 \end{enumerate}
 
-\subsection{コード}
+\section{コード}
 
 コードラボのここから開始したい場合、step07をコピーしてください。
 
-\subsection{ウォークスルー}
+\section{ウォークスルー}
 
 client/chat-client.dartファイルを開き、ChatConnectionクラスを探します。WebSocket接続を追加し、メッセージを受信し、メッセージを送信します。
 
 ヒント: WebSocketのAPIドキュメントを開く場合は、\url{http://api.dartlang.org/html/WebSocket.html}を開きます。
 
-\subsubsection{WebSocketサーバへ接続する}
+\subsection{WebSocketサーバへ接続する}
 
 WebSocketの新しいインスタンスフィールドを、ChatConnectionクラスに追加します。
 
@@ -50,15 +50,15 @@ _init() {
 
 エディタのOpen Declaration機能を使い、url変数がどこで定義されているか確認します。
 
-\includegraphics{step7/img_56.jpg}
+\img{step7/img_56.jpg}
 
 urlはChatConnectionのインスタンス変数で、コンストラクタ内で設定されていることに注意してください。
 
-\subsubsection{WebSocketイベントをハンドルする}
+\subsection{WebSocketイベントをハンドルする}
 
 WebSocketオブジェクトは、open、close、error、messageの４つのイベントを返します。messageイベントは、WebSocketサーバから新しいメッセージを受信したことを通知します。メッセージの内容は、event.dataで取得することができます。
 
-ヒント: WebSocketイベントのAPIドキュメントは http://api.dartlang.org/html/WebSocketEvents.html を参照してください。
+ヒント: WebSocketイベントのAPIドキュメントは\url{http://api.dartlang.org/html/WebSocketEvents.html}を参照してください。
 
 ChatConnectionの\_initに、WebSocketイベントのハンドラを追加します。
 
@@ -93,7 +93,7 @@ webSocket.on.message.add((e) {
   });
 \end{verbatim}
 
-\subsubsection{WebSocketサーバへメッセージを送信する}
+\subsection{WebSocketサーバへメッセージを送信する}
 
 webSocketインスタンスが接続している状態では、WebSocketサーバに対してメッセージを送信することができます。ChatConnectionクラスの\_sendEncodedMessage()を探し、WebSocketサーバにエンコードされたメッセージを送信するコードを追加しましょう。webSocket変数がnullでは無く、接続が完了している場合のみメッセージを送信します。
 
@@ -109,25 +109,25 @@ _sendEncodedMessage(String encodedMessage) {
 }
 \end{verbatim}
 
-\subsubsection{アプリを動かしてみよう}
+\subsection{アプリを動かしてみよう}
 
 サーバとクライアントを接続し、アプリを動かしてみましょう！
 
 もしchat-server.dartを起動していないのなら、まず起動します。(起動方法はStep2を参照してください) 次に、client/chat-client.dartをDartiumのlaunchesから起動します。WebSocketサーバに接続成功すると、[system]: Connectedとチャットウインドウに表示されるでしょう。
 
-\includegraphics{step7/img_60.jpg}
+\img{step7/img_60.jpg}
 
 Dart Editorのchat-server.dartの出力にnew ws conn messageと表示されていることをチェックし、クライアントがWebSocketサーバに接続したことを確認します。
 
-\includegraphics{step7/img_61.jpg}
+\imgw{step7/img_61.jpg}
 
 サーバに接続できない場合は、chat-server.dartが起動しているか確認しましょう。また、Dartiumを終了し、再起動することも有効です。
 
 いくつかメッセージを送受信してみましょう! DariumのURLをコピーし、Dartiumで新しいタブを開きます。そしてURLを貼り付けます。違うユーザ名を入力し、二つのウインドウの間でチャットをしてみましょう。
 
-\includegraphics{step7/img_62.jpg}
+\imgw{step7/img_62.jpg}
 
-\subsection{上級編}
+\section{上級編}
 
 接続失敗時に接続をリトライする処理を追加します。その際、リトライを試す間隔は徐々に増やします。
 
