@@ -2,7 +2,7 @@
 
 Webディベロッパーの皆さんはDOM(Document Object Model, ブラウザの機能へアクセスするAPIのセット)の扱いに慣れているかと思います．しかし，多くの人はブラウザのインターフェースを触りやすくしたり，ブラウザ間の相違をなくすためにjQueryを使っているかと思います．jQueryがDOMをJavaScriptから利用しやすくするように，DartもDartから利用しやすくするようにHTML libraryを提供しています．
 
-HTML library\footnote{\url{http://api.dartlang.org/html.html}}は<div>，<p>などのWebページ上の要素(Element)に対するアクセス手段を提供します．ページ上の要素を見つけたり，新しい要素を作成したり，テキストを変更したり，様々なことができます．また，HTMLの新しい機能であるIndexedDBやApplication Cache，そしてWebGLなどへもHTML libraryを利用してアクセスすることができます．
+HTML library\footnote{\url{http://api.dartlang.org/html.html}}は\verb|<div>|，\verb|<p>|などのWebページ上の要素(Element)に対するアクセス手段を提供します．ページ上の要素を見つけたり，新しい要素を作成したり，テキストを変更したり，様々なことができます．また，HTMLの新しい機能であるIndexedDBやApplication Cache，そしてWebGLなどへもHTML libraryを利用してアクセスすることができます．
 
 WebアプリケーションはWebページ上では単一のUIスレッド上で動作します．\footnote{WebWorkerなどの例外はあります．しかし，これらの応用的なトピックについてはここでは触れません．}目に見えて動作が固まったり遅れることを最小化するために，マウスクリックやボタンが押されたことなどのイベントに対する応答はコールバック(Callback)として起こります．例えば入力フィールドなどのページ上の要素のハンドル(Handle)を取得すれば，特定のイベントの時に実行される関数を登録することができます．(例えば，''on change''イベントなど)
 
@@ -31,7 +31,7 @@ WebアプリケーションはWebページ上では単一のUIスレッド上で
 
 このステップやこれ以降のステップでコードを書くとき，コード補完を試してみてください．もし，Dart Editorが思ったような候補を表示してくれない場合はアノテーション型宣言を対象のオブジェクトに追加してみてください．
 
-(チップ: コード補完を利用しようとしていて，正しい候補を提供してくれない場合，Send Feedbackボタンを押してDartチームに知らせてください．その際，補完しようとしているコードのスニペットを一緒に送ってください．)
+\tip{コード補完を利用しようとしていて，正しい候補を提供してくれない場合，Send Feedbackボタンを押してDartチームに知らせてください．その際，補完しようとしているコードのスニペットを一緒に送ってください．}
 
 \subsection{HTML内の要素を特定する}
 
@@ -78,17 +78,17 @@ $ client/index.html $から3つの要素を既に見つけていると思いま�
 / client/chat-client.dart
 ...
 main() {
-// Step 4: Identify elements by ID.
-TextAreaElement chatElem = query('#chat-display');
-InputElement usernameElem = query('#chat-username');
-InputElement messageElem = query('#chat-message');
-chatWindow = new ChatWindow(chatElem);
-usernameInput = new UsernameInput(usernameElem);
-messageInput = new MessageInput(messageElem);
-...
+  // Step 4: Identify elements by ID.
+  TextAreaElement chatElem = query('#chat-display');
+  InputElement usernameElem = query('#chat-username');
+  InputElement messageElem = query('#chat-message');
+  chatWindow = new ChatWindow(chatElem);
+  usernameInput = new UsernameInput(usernameElem);
+  messageInput = new MessageInput(messageElem);
+  ...
 \end{verbatim}
 
-$\bf{発展的な内容:}$ 明察な読者の方はquery()メソッドは単一の要素(Element\footnote{\url{http://api.dartlang.org/html/Element.html}})を返すが，返り値はより詳細な型(TextAreaElement\footnote{\url{http://api.dartlang.org/html/TextAreaElement.html}} and InputElement\footnote{\url{http://api.dartlang.org/html/InputElement.html}})によりアノテートされていることに気づくでしょう．Dartでは''ダウンキャスト''\footnote{訳者注|ダウンキャストとは基底クラスから派生クラスへの型変換． - Wikipedia 型変換 \url{http://ja.wikipedia.org/wiki/\%E5\%9E\%8B\%E5\%A4\%89\%E6\%8F\%9B\#.E3.83.80.E3.82.A6.E3.83.B3.E3.82.AD.E3.83.A3.E3.82.B9.E3.83.88}} が許されています．これは追加的な型づけをもつシステムでは自然なことで，また，これは''疑わしきは罰せず(innocent until proven guilty)''のプログラミングスタイルを推奨します．アノテーション型宣言が期待される戻り値の型のヒエラルキーの中のものである限り，Dartのツールは警告を発しません．
+\advancedtopic{明察な読者の方はquery()メソッドは単一の要素(Element\footnote{\url{http://api.dartlang.org/html/Element.html}})を返すが，返り値はより詳細な型(TextAreaElement\footnote{\url{http://api.dartlang.org/html/TextAreaElement.html}} and InputElement\footnote{\url{http://api.dartlang.org/html/InputElement.html}})によりアノテートされていることに気づくでしょう．Dartでは''ダウンキャスト''\footnote{訳者注|ダウンキャストとは基底クラスから派生クラスへの型変換． - Wikipedia 型変換 \url{http://ja.wikipedia.org/wiki/\%E5\%9E\%8B\%E5\%A4\%89\%E6\%8F\%9B\#.E3.83.80.E3.82.A6.E3.83.B3.E3.82.AD.E3.83.A3.E3.82.B9.E3.83.88}} が許されています．これは追加的な型づけをもつシステムでは自然なことで，また，これは''疑わしきは罰せず(innocent until proven guilty)''のプログラミングスタイルを推奨します．アノテーション型宣言が期待される戻り値の型のヒエラルキーの中のものである限り，Dartのツールは警告を発しません．}
 
 また，ChatWindow，UsernameInputやMessageInputがどのようにしてコンストラクタでDOMの要素を受け取っているのかも分かると思います．以下に例を示しておきます．
 
@@ -108,15 +108,15 @@ MessageInput(InputElement elem) : super(elem);
 element.on.event.add((event) => handleTheEvent())
 \end{verbatim}
 
-eventにはマウスクリック，ボタンの押下，値の変化など様々な動作や状態の変化を指定することができます．
+event\footnote{訳者注: on.event.addのeventのことです．}にはマウスクリック，ボタンの押下，値の変化など様々な動作や状態の変化を指定することができます．
 
-チップ: APIドキュメントのElementEvents\footnote{\url{http://api.dartlang.org/html/ElementEvents.html}}を見ると要素に対して利用可能なすべてのイベントを確認できます．
+\tip{APIドキュメントのElementEvents\footnote{\url{http://api.dartlang.org/html/ElementEvents.html}}を見ると要素に対して利用可能なすべてのイベントを確認できます．}
 
 上で使われている単一行間数の文法である\verb|=>|は次の文の短縮形です．
 
 \begin{verbatim}
 element.on.event.add((event) {
-return handleTheEvent();
+  return handleTheEvent();
 });
 \end{verbatim}
 
@@ -125,34 +125,34 @@ return handleTheEvent();
 \begin{verbatim}
 // for illustrative purposes only, not part of the codelab
 class Person {
-String firstName, lastName;
-Person(this.firstName, this.lastName);
-String toString() => '$firstName $lastName';
+  String firstName, lastName;
+  Person(this.firstName, this.lastName);
+  String toString() => '$firstName $lastName';
 }
 \end{verbatim}
 
 Dartのレキシカルクロージャはネストした関数やコールバックを書くことを簡単にします．レキシカルスコープ内の変数に対してコールバック関数の中からアクセスすることができます．また，''this''オブジェクトでさえレキシカルスコープごとに定義されます．
 
-発展的なトピック: レキシカルスコープはプログラム構造に渡るスコープを定義します．''波括弧をたどる''だけでどのオブジェクトや変数がスコープの中にいるのか知ることができます．また，スコープはプログラムの動作に応じて変わることはありません．次のコードはレキシカルスコープのいくつかの例です:
+\advancedtopic{レキシカルスコープはプログラム構造に渡るスコープを定義します．''波括弧をたどる''だけでどのオブジェクトや変数がスコープの中にいるのか知ることができます．また，スコープはプログラムの動作に応じて変わることはありません．次のコードはレキシカルスコープのいくつかの例です:
 
 \imgw{step4/img_45.jpg}
 
-onNoMoreCarrotsコールバックハンドラーがnumCarrots，bunnies，そしてfarmerNameにアクセスできることが分かると思います．
+onNoMoreCarrotsコールバックハンドラーがnumCarrots，bunnies，そしてfarmerNameにアクセスできることが分かると思います．}
 
 ユーザー名入力フィールドの値変化イベントで動作するコードを追加します．ユーザー名フィールドが空の時は，メッセージ入力フィールドは無効化されています．ユーザー名入力フィールドに値が入力されている場合は，メッセージフィールドは有効化されます．
 
-\subsubsection{ユーザー名の変更をハンドルする}
+\subsection{ユーザー名の変更をハンドルする}
 
 $ client/chat-client.dart $を開き，UsernameInputクラスを見つけます．イベントハンドラをUsernameInputのbind()メソッドの内側に追加します．
 
 \begin{verbatim}
 // client/chat-client.dart
 class UsernameInput extends View<InputElement> {
-UsernameInput(InputElement elem) : super(elem);
-bind() {
-// Step 4: Handle change event for username input.
-elem.on.change.add((e) => _onUsernameChange());
-}
+  UsernameInput(InputElement elem) : super(elem);
+  bind() {
+    // Step 4: Handle change event for username input.
+    elem.on.change.add((e) => _onUsernameChange());
+  }
 ...
 \end{verbatim}
 
@@ -161,14 +161,14 @@ elem.on.change.add((e) => _onUsernameChange());
 \begin{verbatim}
 // client/chat-client.dart
 _onUsernameChange() {
-// Step 4: Enable the message input if username input
-// is not empty, or disable the message input if username input
-// is empty.
-if (!elem.value.isEmpty()) {
-messageInput.enable();
-} else {
-messageInput.disable();
-}
+  // Step 4: Enable the message input if username input
+  // is not empty, or disable the message input if username input
+  // is empty.
+  if (!elem.value.isEmpty()) {
+    messageInput.enable();
+  } else {
+    messageInput.disable();
+  }
 }
 ...
 \end{verbatim}
@@ -192,16 +192,16 @@ MessageInputクラスを見つけて次のコードを追加してください:
 \begin{verbatim}
 // client/chat-client.dart
 class MessageInput extends View<InputElement> {
-MessageInput(InputElement elem) : super(elem);
-bind() {
-// Step 4: When the message input changes,
-// send the message, display the message, and clear the message input.
-elem.on.change.add((e) {
-connection.send(usernameInput.username, message);
-chatWindow.displayMessage(message, usernameInput.username);
-elem.value = '';
-});
-}
+  MessageInput(InputElement elem) : super(elem);
+  bind() {
+    // Step 4: When the message input changes,
+    // send the message, display the message, and clear the message input.
+    elem.on.change.add((e) {
+      connection.send(usernameInput.username, message);
+      chatWindow.displayMessage(message, usernameInput.username);
+      elem.value = '';
+    });
+  }
 \end{verbatim}
 
 connection.send()にmessageが渡されていることに気づくと思います．messageはMessageInputの中で定義されているゲッターメソッドです:
@@ -214,7 +214,7 @@ String get message() => elem.value;
 }
 \end{verbatim}
 
-発展したトピック: ゲッターはフィールドに似たメソッドで呼び出しの時に()が必要ありません．ゲッターとセッター\footnote{\url{http://www.dartlang.org/docs/language-tour/#classes-getters-and-setters}}は上級のAPI設計においてプロパティをカプセル化し単純なパブリックなフィールドにリファクタリングすることを手助けすることを意図されています．
+\advancedtopic{ゲッターはフィールドに似たメソッドで呼び出しの時に()が必要ありません．ゲッターとセッター\footnote{\url{http://www.dartlang.org/docs/language-tour/#classes-getters-and-setters}}は上級のAPI設計においてプロパティをカプセル化し単純なパブリックなフィールドにリファクタリングすることを手助けすることを意図されています．}
 
 \section{上級編}
 
