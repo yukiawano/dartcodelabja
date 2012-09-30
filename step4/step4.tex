@@ -1,4 +1,4 @@
-\section{Step 4: 入力フィールドの変更へ反応する}
+\ochapter{Step 4: 入力フィールドの変更へ反応する}
 
 Webディベロッパーの皆さんはDOM(Document Object Model, ブラウザの機能へアクセスするAPIのセット)の扱いに慣れているかと思います．しかし，多くの人はブラウザのインターフェースを触りやすくしたり，ブラウザ間の相違をなくすためにjQueryを使っているかと思います．jQueryがDOMをJavaScriptから利用しやすくするように，DartもDartから利用しやすくするようにHTML libraryを提供しています．
 
@@ -6,7 +6,7 @@ HTML library\footnote{\url{http://api.dartlang.org/html.html}}は<div>，<p>な�
 
 WebアプリケーションはWebページ上では単一のUIスレッド上で動作します．\footnote{WebWorkerなどの例外はあります．しかし，これらの応用的なトピックについてはここでは触れません．}目に見えて動作が固まったり遅れることを最小化するために，マウスクリックやボタンが押されたことなどのイベントに対する応答はコールバック(Callback)として起こります．例えば入力フィールドなどのページ上の要素のハンドル(Handle)を取得すれば，特定のイベントの時に実行される関数を登録することができます．(例えば，''on change''イベントなど)
 
-\subsection{目標}
+\section{目標}
 
 \begin{enumerate}
 \item ライブラリをImportする
@@ -19,21 +19,21 @@ WebアプリケーションはWebページ上では単一のUIスレッド上で
 \item どのメソッドが利用できるかを知るためにDart Editorのコード補完を利用する
 \end{enumerate}
 
-\subsection{コード}
+\section{コード}
 
 もし，作業につまづいた場合はstep04のフォルダの内容をstart-hereフォルダにコピーすることで，この部分の作業内容を終わらせた状態にすることができます．
 
-\subsection{ウォークスルー}
+\section{ウォークスルー}
 
 コードにとりかかる前に，Dart Editorが持つ生産的できっと役に立つ機能の一つを紹介します．コード補完(Code Completion)です．型情報(直接的なアノテーション型宣言(Type Annotations)，単純な型推論，また，型伝播(Type Propagation))を利用して，Dart Editorは利用可能なメソッドやオブジェクト上のフィールドのリストを表示します．Macをお使いの場合であれば，コントロールとスペースを同時に押すことでコード補完を呼び出すことができます．
 
-\includegraphics{step4/img_40.jpg}
+\img{step4/img_40.jpg}
 
 このステップやこれ以降のステップでコードを書くとき，コード補完を試してみてください．もし，Dart Editorが思ったような候補を表示してくれない場合はアノテーション型宣言を対象のオブジェクトに追加してみてください．
 
 (チップ: コード補完を利用しようとしていて，正しい候補を提供してくれない場合，Send Feedbackボタンを押してDartチームに知らせてください．その際，補完しようとしているコードのスニペットを一緒に送ってください．)
 
-\subsubsection{HTML内の要素を特定する}
+\subsection{HTML内の要素を特定する}
 
 HTML libraryを追加して，ページ上に存在する要素を見つけ，イベントを登録し，DOM要素を操作しましょう．
 
@@ -51,7 +51,7 @@ value="enter username...">
 
 特定の要素を簡単に見つけることができるようにするために，HTML要素のIDはドキュメント内において固有です．
 
-\subsubsection{dart:htmlライブラリがインポートされたことを確認する}
+\subsection{dart:htmlライブラリがインポートされたことを確認する}
 
 3つのIDを確認したら，DartのHTML libraryを使ってそれらの要素のハンドルを取得することができます．$ client/chat-client.dart $を開いてファイルの先頭までスクロールしてください．
 
@@ -66,7 +66,7 @@ dart:htmlのインポート文は既に追加されていることがわかる�
 ...
 \end{verbatim}
 
-\subsubsection{HTMLの要素を見つける}
+\subsection{HTMLの要素を見つける}
 
 dart:htmlのトップレベルの関数であるquery(String selector)\footnote{\url{http://api.dartlang.org/docs/continuous/dart\_html.html\#query}}を利用して，HTMLページ内の要素を見つけます．query()関数はCSSセレクタを引数として取り，マッチした単一の要素を返します．(queryAll()\footnote{\url{http://api.dartlang.org/docs/continuous/dart\_html.html\#queryAll}}がすべての要素を返す関数として存在します．)
 
@@ -100,7 +100,7 @@ MessageInput(InputElement elem) : super(elem);
 ...
 \end{verbatim}
 
-\subsubsection{レキシカルクロージャを利用してイベントを紐付ける}
+\subsection{レキシカルクロージャを利用してイベントを紐付ける}
 
 ここではHTML要素のイベントにどのようにして関数を紐付けるのかを学びます．特にユーザー名入力フィールドとメッセージ入力フィールドの2つの''on change''イベントに対してイベントハンドラを紐付けます．単一行コールバック関数(simple one-line callback function)を使う場合，次の1行の形式で示せます:
 
@@ -135,7 +135,7 @@ Dartのレキシカルクロージャはネストした関数やコールバッ�
 
 発展的なトピック: レキシカルスコープはプログラム構造に渡るスコープを定義します．''波括弧をたどる''だけでどのオブジェクトや変数がスコープの中にいるのか知ることができます．また，スコープはプログラムの動作に応じて変わることはありません．次のコードはレキシカルスコープのいくつかの例です:
 
-\includegraphics{step4/img_45.jpg}
+\img{step4/img_45.jpg}
 
 onNoMoreCarrotsコールバックハンドラーがnumCarrots，bunnies，そしてfarmerNameにアクセスできることが分かると思います．
 
@@ -177,7 +177,7 @@ messageInput.disable();
 
 MessageInputのインスタンに対してenable()とdisable()メソッドが呼び出されています．MessageInputはこのチャットアプリケーションのために私たちが作成したクラスです．それらのメソッドの実装をチェックしてみてください．
 
-\subsubsection{メッセージ入力フィールドの変更をハンドルする}
+\subsection{メッセージ入力フィールドの変更をハンドルする}
 
 メッセージ入力フィールドの取り扱いの仕組みも似ています．メッセージ入力フィールドが変化したら，次の3つのことをすれば良いのです:
 
@@ -216,7 +216,7 @@ String get message() => elem.value;
 
 発展したトピック: ゲッターはフィールドに似たメソッドで呼び出しの時に()が必要ありません．ゲッターとセッター\footnote{\url{http://www.dartlang.org/docs/language-tour/#classes-getters-and-setters}}は上級のAPI設計においてプロパティをカプセル化し単純なパブリックなフィールドにリファクタリングすることを手助けすることを意図されています．
 
-\subsection{上級編}
+\section{上級編}
 
 \begin{enumerate}
 \item 入力フィールドが変更されたときではなく，送信ボタンが押された時に送信するようにしましょう．ボタンを追加し，ラベルをつけ，クリックイベントに応答します．
