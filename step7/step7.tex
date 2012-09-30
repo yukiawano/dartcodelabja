@@ -15,13 +15,13 @@ WebSocketsはLong polling(Comet)やHTTP越しの定期的な問い合わせよ�
 
 \section{コード}
 
-コードラボのここから開始したい場合、step07をコピーしてください。
+\ifyougetstuck{step07}
 
 \section{ウォークスルー}
 
 client/chat-client.dartファイルを開き、ChatConnectionクラスを探します。WebSocket接続を追加し、メッセージを受信し、メッセージを送信します。
 
-ヒント: WebSocketのAPIドキュメントを開く場合は、\url{http://api.dartlang.org/html/WebSocket.html}を開きます。
+\hint{WebSocketのAPIドキュメントを開く場合は、\url{http://api.dartlang.org/html/WebSocket.html}を開きます。}
 
 \subsection{WebSocketサーバへ接続する}
 
@@ -58,7 +58,7 @@ urlはChatConnectionのインスタンス変数で、コンストラクタ内で
 
 WebSocketオブジェクトは、open、close、error、messageの４つのイベントを返します。messageイベントは、WebSocketサーバから新しいメッセージを受信したことを通知します。メッセージの内容は、event.dataで取得することができます。
 
-ヒント: WebSocketイベントのAPIドキュメントは\url{http://api.dartlang.org/html/WebSocketEvents.html}を参照してください。
+\hint{WebSocketイベントのAPIドキュメントは\url{http://api.dartlang.org/html/WebSocketEvents.html}を参照してください。}
 
 ChatConnectionの\_initに、WebSocketイベントのハンドラを追加します。
 
@@ -145,7 +145,8 @@ closeとerrorイベントハンドラーでは、遅延のあと再接続を試�
 \begin{verbatim}
 // client/chat-client.dart
 webSocket.on.close.add((e) {
-  chatWindow.displayNotice('web socket closed, retrying in $retrySeconds seconds');
+  chatWindow.displayNotice(
+    'web socket closed, retrying in $retrySeconds seconds');
   if (!encounteredError) {
     window.setTimeout(() => _init(retrySeconds*2), 1000*retrySeconds);
   }
@@ -162,3 +163,4 @@ webSocket.on.error.add((e) {
 
 setTimeout()メソッドは二つの引数を取ります。functionとそれをいつ呼び出すか(現在からのミリ秒)です。この場合はretrySeconds秒の後、\_init()メソッドを呼び出します。これはDartにおけるクロージャーの良い例です。setTimeout()メソッドに渡すインライン関数から、容易に\_init()メソッドとretrySeconds変数を参照することができます。
 
+\clearpage
