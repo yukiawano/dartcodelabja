@@ -1,11 +1,12 @@
 \documentclass[12pt]{jbook}
 
 \usepackage{url}
+\usepackage{ascmac}
 \usepackage[dvipdfm]{graphicx}
 
-\title{Dart Code Lab 日本語バージョン}
-\author{GDG Kyoto}
-\date{2012/09/29}
+\title{Dart Code Lab 日本語訳\footnote{オリジナルテキストhttp://www.dartlang.org/slides/2012/06/io12/Bullseye-Your-first-Dart-app-Codelab-GoogleIO2012.pdf}}
+\author{GDG Kyoto 翻訳}
+\date{\today}
 \begin{document}
 \begin{titlepage}
 \maketitle
@@ -23,6 +24,12 @@
 \addtocounter{chapter}{1}
 \setcounter{section}{1}
 \addcontentsline{toc}{chapter}{#1}}
+
+% hint command
+\newcommand{\hint}[1]{
+\begin{itembox}[l]{ヒント}
+#1
+\end{itembox}}
 
 \newpage
 
