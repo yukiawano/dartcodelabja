@@ -88,7 +88,7 @@ main() {
   ...
 \end{verbatim}
 
-\advancedtopic{明察な読者の方はquery()メソッドは単一の要素(Element\footnote{\url{http://api.dartlang.org/html/Element.html}})を返すが，返り値はより詳細な型(TextAreaElement\footnote{\url{http://api.dartlang.org/html/TextAreaElement.html}} and InputElement\footnote{\url{http://api.dartlang.org/html/InputElement.html}})によりアノテートされていることに気づくでしょう．Dartでは''ダウンキャスト''\footnote{訳者注|ダウンキャストとは基底クラスから派生クラスへの型変換． - Wikipedia 型変換 \url{http://ja.wikipedia.org/wiki/\%E5\%9E\%8B\%E5\%A4\%89\%E6\%8F\%9B\#.E3.83.80.E3.82.A6.E3.83.B3.E3.82.AD.E3.83.A3.E3.82.B9.E3.83.88}} が許されています．これは追加的な型づけをもつシステムでは自然なことで，また，これは''疑わしきは罰せず(innocent until proven guilty)''のプログラミングスタイルを推奨します．アノテーション型宣言が期待される戻り値の型のヒエラルキーの中のものである限り，Dartのツールは警告を発しません．}
+\advancedtopic{明察な読者の方はquery()メソッドは単一の要素(Element\footnote{\url{http://api.dartlang.org/html/Element.html}})を返すが，返り値はより詳細な型(TextAreaElement\footnote{\url{http://api.dartlang.org/html/TextAreaElement.html}} and InputElement\footnote{\url{http://api.dartlang.org/html/InputElement.html}})によりアノテートされていることに気づくでしょう．Dartでは''ダウンキャスト''\footnote{訳者注|ダウンキャストとは基底クラスから派生クラスへの型変換． - Wikipedia 型変換 \url{http://ja.wikipedia.org/wiki/型変換}} が許されています．これは追加的な型づけをもつシステムでは自然なことで，また，これは''疑わしきは罰せず(innocent until proven guilty)''のプログラミングスタイルを推奨します．アノテーション型宣言が期待される戻り値の型のヒエラルキーの中のものである限り，Dartのツールは警告を発しません．}
 
 また，ChatWindow，UsernameInputやMessageInputがどのようにしてコンストラクタでDOMの要素を受け取っているのかも分かると思います．以下に例を示しておきます．
 
